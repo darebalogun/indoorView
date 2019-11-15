@@ -7,15 +7,22 @@ from selenium.webdriver.chrome.options import Options
 
 
 def ros_to_matplotlib(coord):
-    return (coord[0]/0.05 + 80, coord[1]/0.05 + 80)
+    return (coord[0]/0.05 + 80, -1*coord[1]/0.05 + 80)
 
 
 fig, ax = plt.subplots()
+plt.gca().invert_yaxis()
 img = mpimg.imread('/home/darebalogun/Desktop/maps/map.pgm')
-imgplot = plt.imshow(img, cmap='gray', origin='upper')
-coord = (0.325365936796, -0.180220022798)
+imgplot = plt.imshow(img, cmap='gray', origin='upper', aspect='auto')
+coord = (-0.0250, -1.0413)
+coord1 = (0.005006, 1.37167)
 x,y = ros_to_matplotlib(coord)
+x1, y1 = ros_to_matplotlib(coord1)
+plt.axis('off')
+plt.subplots_adjust(left=0, bottom=0, top=1.0, right=1.0)
 plt.scatter(x, y, s=50, c='red', marker='o', picker=5)
+plt.scatter(x1, y1, s=50, c='red', marker='o', picker=5)
+fig.canvas.toolbar.pack_forget()
 chrome_options = Options()
 chrome_options.add_argument(
     "--app=https://developers.google.com/vr/develop/web/vrview-web")
