@@ -25,7 +25,7 @@ plt.scatter(x1, y1, s=50, c='red', marker='o', picker=5)
 fig.canvas.toolbar.pack_forget()
 chrome_options = Options()
 chrome_options.add_argument(
-    "--app=https://developers.google.com/vr/develop/web/vrview-web")
+    "--app=http://127.0.0.1:8887/index.html")
 chrome_options.add_argument("--window-size=1920,640")
 chrome_options.add_experimental_option(
     "excludeSwitches", ['enable-automation'])
@@ -50,7 +50,7 @@ html = """<!DOCTYPE html>
 def onpick(event):
     print(str(event.ind) + " clicked!")
 
-    url = 'https://developers.google.com/vr/develop/web/vrview-web'
+    url = 'http://127.0.0.1:8887/index.html'
 
     driver.get(url)
 

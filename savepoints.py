@@ -11,15 +11,23 @@ from go_to_specific_point_on_map import GoToPose
 from threading import Thread
 
 
-class SavePoints:
+class MapPoints:
+    '''
+    Class represents set of points of interest through which the turtlebot will travel.
+    The turtlebot will also take a 360 photo at each photo and save images to database
+    '''
 
     def __init__(self):
+        # Navigator to send goals on map to turtlebot
         self.navigator = GoToPose()
+        # Array of position objects. Each position is 2 long python dictionary with 'x' and 'y' keys with positions
         self.positions = []
-        self.quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-        self.publisher = rospy.Publisher("/visualization_marker", Marker, queue_size=5)
+        # TODO: Calculate quaternion based on previous point
+        self.quaternion = {'r1': 0.000, 'r2': 0.000, 'r3': 0.000, 'r4': 1.000}
+        # Publish point on map
+        self.publisher = rospy.Publisher(
+            "/visualization_marker", Marker, queue_size=5)
         self.marker_id_count = 0
-
 
     def callback(self, data):
         rospy.loginfo("Point : " + str(data.point.x) + ' ' + str(data.point.y))
@@ -34,30 +42,30 @@ class SavePoints:
             midx, midy = splitpoints.get_split_point(a, b, 0.5)
 
             if not (a[0] <= midx <= b[0] or b[0] <= midx <= a[0]):
-                position = {'x': data.point.x, 'y' : data.point.y}
+                position = {'x': data.point.x, 'y': data.point.y}
                 self.positions.append(position)
                 self.add_marker(position)
                 break
 
-            position = {'x': midx, 'y' : midy}
+            position = {'x': midx, 'y': midy}
             self.positions.append(position)
             self.add_marker(position)
-        
 
     def listener(self):
 
-        rospy.loginfo("Please click points of interest on map in order! Press Enter when done!")
-        check_done = Thread(target = self.check_for_done, args=())
+        rospy.loginfo(
+            "Please click points of interest on map in order! Press Enter when done!")
+        check_done = Thread(target=self.check_for_done, args=())
         check_done.daemon = True
         check_done.start()
         rospy.Subscriber("/clicked_point", PointStamped, self.callback)
         rospy.spin()
 
-
     def check_for_done(self):
         usr_input = raw_input()
         rospy.loginfo("Saving Map...")
-        os.system("gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/maps/map")
+        os.system(
+            "gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/maps/map")
         rospy.sleep(3)
         os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/maps/map.yaml")
         rospy.loginfo("Estimate Initial Pose! Press Enter When Done")
@@ -66,7 +74,6 @@ class SavePoints:
         usr_input = raw_input()
         self.perform_navigation()
 
-    
     def perform_navigation(self):
         for position in self.positions:
             success = self.navigator.goto(position, self.quaternion)
@@ -77,8 +84,7 @@ class SavePoints:
 
             rospy.sleep(1)
 
-
-    def add_marker(self, position):          
+    def add_marker(self, position):
         marker = Marker()
         marker.header.frame_id = "map"
         marker.header.stamp = rospy.Time.now()
@@ -100,8 +106,9 @@ class SavePoints:
         for position in self.positions:
             self.add_marker(position)
 
+
 if __name__ == '__main__':
-    
+
     rospy.init_node('listener', anonymous=True)
-    savepoints = SavePoints()
-    savepoints.listener()
+    mappoints = MapPoints()
+    mappoints.listener()
