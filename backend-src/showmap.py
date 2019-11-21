@@ -16,7 +16,7 @@ img = mpimg.imread('/home/darebalogun/Desktop/maps/map.pgm')
 imgplot = plt.imshow(img, cmap='gray', origin='upper', aspect='auto')
 coord = (-0.0250, -1.0413)
 coord1 = (0.005006, 1.37167)
-x,y = ros_to_matplotlib(coord)
+x, y = ros_to_matplotlib(coord)
 x1, y1 = ros_to_matplotlib(coord1)
 plt.axis('off')
 plt.subplots_adjust(left=0, bottom=0, top=1.0, right=1.0)
@@ -25,7 +25,7 @@ plt.scatter(x1, y1, s=50, c='red', marker='o', picker=5)
 fig.canvas.toolbar.pack_forget()
 chrome_options = Options()
 chrome_options.add_argument(
-    "--app=http://127.0.0.1:8887/index.html")
+    "--app=http://127.0.0.1:8887/360.html")
 chrome_options.add_argument("--window-size=1920,640")
 chrome_options.add_experimental_option(
     "excludeSwitches", ['enable-automation'])
@@ -50,7 +50,7 @@ html = """<!DOCTYPE html>
 def onpick(event):
     print(str(event.ind) + " clicked!")
 
-    url = 'http://127.0.0.1:8887/index.html'
+    url = 'http://127.0.0.1:8887/360.html'
 
     driver.get(url)
 

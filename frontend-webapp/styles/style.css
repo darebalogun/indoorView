@@ -41,6 +41,9 @@ p.caption {
 
 iframe { border: 0; }
 
+img {
+  max-width: 100%;
+}
 
 /* MOBILE */
 @media screen and (max-width: 600px) {
@@ -51,8 +54,8 @@ iframe { border: 0; }
 /* DESKTOP */
 @media screen and (min-width: 600px) {
   iframe {
-    height: 400px;
-    width: 700px;
+    height: 600px;
+    width: 100%;
     margin: 1rem auto;
     display: block;
   }

@@ -24,7 +24,7 @@ class MapPoints:
         self.positions = []
         # TODO: Calculate quaternion based on previous point
         self.quaternion = {'r1': 0.000, 'r2': 0.000, 'r3': 0.000, 'r4': 1.000}
-        # Publish point on map
+        # Publish points on map
         self.publisher = rospy.Publisher(
             "/visualization_marker", Marker, queue_size=5)
         self.marker_id_count = 0
