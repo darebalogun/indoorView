@@ -3,6 +3,7 @@
   $pdo = getConnectionInfo();
   $map_name = getMapNameWithIndex($pdo, $_GET['map'])->fetchColumn(0);
   $imagepath = getImagePathWithIndex($pdo, $_GET['map'])->fetchColumn(0);
+  $coords = getAllCoordsForMap($pdo, $map_name)->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -17,15 +18,28 @@
       type="text/css"
     />
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    <script src="includes/jquery-3.4.1.min.js"></script>
+    <script src="includes/jquery.maphilight.min.js"></script>
     <script src="includes/imageMapResizer.min.js"></script>
     <script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
   </head>
   <body>
+    <h1>
+    </h1>
   <div class="row">
     <div class="column" id="image_map">
       <map name="coord_map">
         <?php
-          echo('<area')
+          foreach($coords as $coord){
+            $coordarray = explode("," , $coord[0]);
+            $convertedcoord = convertCoords($coordarray[0],$coordarray[1]);
+            echo("<area 
+                    href='map.php?map=1'
+                    target='_blank'
+                    shape='circle'
+                    coords='" . $convertedcoord[0] . "," . $convertedcoord[1] . ",2'
+                    />");
+          }
         ?>
 
         <area
@@ -52,6 +66,9 @@
       }
     </script>
     </div>
-    <script>imageMapResize()</script>
+    <script>
+    imageMapResize();
+    $('.map').maphilight();
+    </script>
   </body>
 </html>

@@ -53,6 +53,10 @@ img {
   width: 45%;
 }
 
+map {
+  background-color: aqua;
+}
+
 /* MOBILE */
 @media screen and (max-width: 600px) {
   iframe {

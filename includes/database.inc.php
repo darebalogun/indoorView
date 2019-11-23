@@ -26,8 +26,19 @@
     }
 
     function getMapNameWithIndex($pdo, $index){
-        $sql = 'SELECT name FROM maps WHERE id=' .$index;
+        $sql = 'SELECT name FROM maps WHERE id=' . $index;
         return $pdo->query($sql);
+    }
+
+    function getAllCoordsForMap($pdo, $map_name){
+        $sql = 'SELECT coordinates FROM ' . $map_name;
+        return $pdo->query($sql);
+    }
+
+    function convertCoords($x, $y){
+        $floatx = ((float) $x)/0.05 + 80;
+        $floaty = (-1*((float) $y))/0.05 + 80;
+        return array($floatx, $floaty);
     }
 
 
