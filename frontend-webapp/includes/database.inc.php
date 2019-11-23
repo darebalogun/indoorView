@@ -1,5 +1,5 @@
 <?php
-
+    // Connect to database using credentials and return connection object
     function getConnectionInfo(){
         try {
             define('DBCONNECTION', 'mysql:host=127.0.0.1;dbname=indoorview');
@@ -7,7 +7,6 @@
             define('DBPASS', 'admin');
 
             $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
-            //$pdo->setAttribute(PDO::ATTR_ERMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e){
             die($e->getMessage());
         }

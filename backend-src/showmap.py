@@ -1,61 +1,34 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-import webview
-import webbrowser
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 
-def ros_to_matplotlib(coord):
-    return (coord[0]/0.05 + 80, -1*coord[1]/0.05 + 80)
+def ros_to_matplotlib(coord, map_resolution, map_size):
+    return (coord[0]/map_resolution + map_size, -1*coord[1]/map_resolution + map_size)
 
 
-fig, ax = plt.subplots()
-plt.gca().invert_yaxis()
-img = mpimg.imread('/home/darebalogun/Desktop/maps/map.pgm')
-imgplot = plt.imshow(img, cmap='gray', origin='upper', aspect='auto')
-coord = (-0.0250, -1.0413)
-coord1 = (0.005006, 1.37167)
-x, y = ros_to_matplotlib(coord)
-x1, y1 = ros_to_matplotlib(coord1)
-plt.axis('off')
-plt.subplots_adjust(left=0, bottom=0, top=1.0, right=1.0)
-plt.scatter(x, y, s=50, c='red', marker='o', picker=5)
-plt.scatter(x1, y1, s=50, c='red', marker='o', picker=5)
-fig.canvas.toolbar.pack_forget()
-fig.savefig('test.png')
-chrome_options = Options()
-chrome_options.add_argument(
-    "--app=http://127.0.0.1:8887/360.html")
-chrome_options.add_argument("--window-size=1920,640")
-chrome_options.add_experimental_option(
-    "excludeSwitches", ['enable-automation'])
-driver = webdriver.Chrome(
-    executable_path="/usr/lib/chromium-browser/chromedriver", chrome_options=chrome_options)
+def add_points_to_map(image_path, map_resolution, map_size, positions):
+    dpi = 120
 
-html = """<!DOCTYPE html>
-<html>
-<head>
-<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
-</head>
-<body>
-<h1> Hello </h1>
-<img src='https://www.w3schools.com/images/w3schools_green.jpg'>
-<iframe src='https://storage.googleapis.com/vrview/2.0/embed?image=https://www.camera-rumors.com/wp-content/uploads/2015/09/Ricoh-Theta-S-sample-images.jpg&is_stereo=true">
-</iframe>
-</body>
-</html>
-"""
+    # Read our image
+    im_data = mpimg.imread(image_path)
 
+    # Get image dimensions so resulting image is the same
+    height, width, nbands = im_data.shape
+    figsize = width / float(dpi), height / float(dpi)
+    fig = plt.figure(figsize=figsize)
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.axis('off')
 
-def onpick(event):
-    print(str(event.ind) + " clicked!")
+    # Show image
+    ax.imshow(im_data, interpolation='nearest')
 
-    url = 'http://127.0.0.1:8887/360.html'
+    # Add all markers
+    for coord in positions:
+        x, y = ros_to_matplotlib(
+            (coord['x'], coord['y']), map_resolution, map_size)
+        plt.scatter(x, y, s=50, c='red', marker='o', picker=5)
 
-    driver.get(url)
+    # Save figure with the original but as png
+    fig.savefig(image_path.replace("pgm", "png"), dpi=dpi, transparent=True)
 
-
-fig.canvas.mpl_connect('pick_event', onpick)
-
-plt.show()
+    plt.show()

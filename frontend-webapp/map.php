@@ -41,13 +41,6 @@
                     />");
           }
         ?>
-
-        <area
-          href="map.php?map=1"
-          target="_blank"
-          shape="circle"
-          coords="2,2,2"
-        />
       </map>
       <?php
         echo('<img src="'. $imagepath .'" usemap="#coord_map" />')
