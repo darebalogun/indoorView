@@ -34,8 +34,8 @@
             $coordarray = explode("," , $coord[0]);
             $convertedcoord = convertCoords($coordarray[0],$coordarray[1]);
             echo("<area 
-                    href='map.php?map=1'
-                    target='_blank'
+                    href='javascript:newVrView(1);'
+                    target='_self'
                     shape='circle'
                     coords='" . $convertedcoord[0] . "," . $convertedcoord[1] . ",2'
                     />");
@@ -55,14 +55,27 @@
     </div>
     <div class="column" id="vrview"></div>
     <script>
-      window.addEventListener("load", onVrViewLoad);
-      function onVrViewLoad() {
+      window.addEventListener("load", function(){
+        onVrViewLoad(0);
+      });
+      var images = [];
+      images.push("images/converted.jpg");
+      images.push("images/360.jpg")
+      function onVrViewLoad(index) {
         var vrView = new VRView.Player("#vrview", {
-          image: "images/converted.jpg",
+          image: images[index],
           is_stereo: false,
           width: "100%",
           height: "100%"
         });
+      }
+
+      function newVrView(index){
+        console.log("hello");
+        var vrview = document.getElementById("vrview");
+        vrview.innerHTML="";
+        onVrViewLoad(index);
+
       }
     </script>
     </div>
