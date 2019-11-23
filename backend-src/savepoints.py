@@ -5,10 +5,12 @@ import rospy
 import StartRVIZ
 import time
 import splitpoints
+from savetodatabase import Database
 from geometry_msgs.msg import Pose, Point, Quaternion, PointStamped
 from visualization_msgs.msg import Marker, MarkerArray
 from go_to_specific_point_on_map import GoToPose
 from threading import Thread
+from PIL import Image
 
 
 class MapPoints:
@@ -17,7 +19,8 @@ class MapPoints:
     The turtlebot will also take a 360 photo at each photo and save images to database
     '''
 
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         # Navigator to send goals on map to turtlebot
         self.navigator = GoToPose()
         # Array of position objects. Each position is 2 long python dictionary with 'x' and 'y' keys with positions
@@ -28,6 +31,8 @@ class MapPoints:
         self.publisher = rospy.Publisher(
             "/visualization_marker", Marker, queue_size=5)
         self.marker_id_count = 0
+        self.database = Database()
+        self.database.create_table(self.name)
 
     def callback(self, data):
         rospy.loginfo("Point : " + str(data.point.x) + ' ' + str(data.point.y))
@@ -63,11 +68,15 @@ class MapPoints:
 
     def check_for_done(self):
         usr_input = raw_input()
+
         rospy.loginfo("Saving Map...")
         os.system(
-            "gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/maps/map")
+            "gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name)
         rospy.sleep(3)
-        os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/maps/map.yaml")
+        Image.open("../maps/" + self.name +
+                   ".pgm").save("../maps/" + self.name + ".png")
+        self.database.add_map(self.name, "maps/" + self.name + ".png")
+        os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name + ".yaml")
         rospy.loginfo("Estimate Initial Pose! Press Enter When Done")
         rospy.sleep(3)
         self.add_marker_array()
@@ -101,6 +110,8 @@ class MapPoints:
         marker.id = self.marker_id_count
         self.marker_id_count += 1
         self.publisher.publish(marker)
+        coordinates = str(position['x']) + ',' + str(position['y'])
+        self.database.add_coordinate(self.name, coordinates, "images/360.jpg")
 
     def add_marker_array(self):
         for position in self.positions:
@@ -110,5 +121,5 @@ class MapPoints:
 if __name__ == '__main__':
 
     rospy.init_node('listener', anonymous=True)
-    mappoints = MapPoints()
+    mappoints = MapPoints("projectroom")
     mappoints.listener()

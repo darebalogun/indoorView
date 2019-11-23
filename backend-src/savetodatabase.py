@@ -28,7 +28,16 @@ class Database:
         except Exception as e:
             print(e)
 
-    def add(self, table_name, coordinates, image_path):
+    def add_map(self, name, imagepath):
+        try:
+            self.mycursor.execute(
+                "INSERT INTO maps (name, imagepath) VALUES (%s, %s)", (name, imagepath)
+            )
+            self.mydb.commit()
+        except Exception as e:
+            print(e)
+
+    def add_coordinate(self, table_name, coordinates, image_path):
         try:
             self.mycursor.execute(
                 "INSERT INTO " + table_name + " (coordinates, image_path) VALUES (%s, %s)", (coordinates, image_path))
@@ -39,5 +48,5 @@ class Database:
 
 if __name__ == "__main__":
     database = Database()
-    database.create_table("mytable1")
+    database.create_table("maps")
     database.add("mytable1", "1.243534,58670956", "/image/jsfska.jpg")

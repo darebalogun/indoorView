@@ -20,5 +20,15 @@
         return $pdo->query($sql);
     }
 
+    function getImagePathWithIndex($pdo, $index){
+        $sql = 'SELECT imagepath FROM maps WHERE id=' . $index;
+        return $pdo->query($sql);
+    }
+
+    function getMapNameWithIndex($pdo, $index){
+        $sql = 'SELECT name FROM maps WHERE id=' .$index;
+        return $pdo->query($sql);
+    }
+
 
 ?>
