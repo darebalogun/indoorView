@@ -23,6 +23,7 @@ plt.subplots_adjust(left=0, bottom=0, top=1.0, right=1.0)
 plt.scatter(x, y, s=50, c='red', marker='o', picker=5)
 plt.scatter(x1, y1, s=50, c='red', marker='o', picker=5)
 fig.canvas.toolbar.pack_forget()
+fig.savefig('test.png')
 chrome_options = Options()
 chrome_options.add_argument(
     "--app=http://127.0.0.1:8887/360.html")

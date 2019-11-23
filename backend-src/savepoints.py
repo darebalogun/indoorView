@@ -33,6 +33,8 @@ class MapPoints:
         self.marker_id_count = 0
         self.database = Database()
         self.database.create_table(self.name)
+        self.map_size = 160
+        self.map_resolution = 0.05
 
     def callback(self, data):
         rospy.loginfo("Point : " + str(data.point.x) + ' ' + str(data.point.y))
@@ -111,7 +113,10 @@ class MapPoints:
         self.marker_id_count += 1
         self.publisher.publish(marker)
         coordinates = str(position['x']) + ',' + str(position['y'])
-        self.database.add_coordinate(self.name, coordinates, "images/360.jpg")
+        mappedx = position['x']/self.map_resolution + self.map_size/2
+        mappedy = -1*position['y']/self.map_resolution + self.map_size/2
+        self.database.add_coordinate(
+            self.name, coordinates, "images/360.jpg", mappedx, mappedy)
 
     def add_marker_array(self):
         for position in self.positions:
