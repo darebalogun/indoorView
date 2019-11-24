@@ -19,7 +19,6 @@
     />
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
     <script src="includes/jquery-3.4.1.min.js"></script>
-    <script src="includes/jquery.maphilight.min.js"></script>
     <script src="includes/imageMapResizer.min.js"></script>
     <script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
   </head>
@@ -38,7 +37,7 @@
                     target='_self'
                     shape='circle'
                     coords='" . $coord[0] . "," . $coord[1] . ",2'
-                    />");
+                  />");
           }
         ?>
       </map>
@@ -64,17 +63,14 @@
       }
 
       function newVrView(index){
-        console.log("hello");
         var vrview = document.getElementById("vrview");
-        vrview.innerHTML="";
+        vrview.removeChild(vrview.childNodes[0]);
         onVrViewLoad(index);
-
       }
     </script>
     </div>
     <script>
     imageMapResize();
-    $('.map').maphilight();
     </script>
   </body>
 </html>
