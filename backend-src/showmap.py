@@ -6,12 +6,35 @@ def ros_to_matplotlib(coord, map_resolution, map_size):
     """
     ROS map coordinates have the origin in the centre, while matplolib origin is upper left corner
     This method converts between the two
+
+    Parameters
+    ----------
+    coord : tuple
+        x y coordinates according to ros map (origin in the centre)
+    map_resolution : float
+        map resolution, set in rviz slam launch file
+    map_size : int
+        dimensions of map, set in rviz slam launch file, note: map is square
     """
     return (coord[0]/map_resolution + map_size/2, -1*coord[1]/map_resolution + map_size/2)
 
 
 def add_points_to_map(image_path, map_resolution, map_size, positions):
-    dpi = 120
+    """
+    Open the pgm file, plot the points of interest as a scatter then save as png
+
+    Parameters
+    ----------
+    image_path : str
+        path to image file (pgm)
+    map_resolution : float
+        map resolution, set in rviz slam launch file
+    map_size : int
+        dimensions of map, set in rviz slam launch file, note: map is square
+    positions : list
+        list of positions to be plotted
+    """
+    dpi = 300
 
     # Read our image
     im_data = mpimg.imread(image_path)
@@ -37,5 +60,3 @@ def add_points_to_map(image_path, map_resolution, map_size, positions):
 
     # Save figure with the original but as png
     fig.savefig(image_path.replace("pgm", "png"), dpi=dpi, transparent=True)
-
-    plt.show()

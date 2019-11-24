@@ -2,25 +2,42 @@ import mysql.connector
 
 
 class Database:
+    """
+    Represents a database with methods to perform database operations
+    """
+
     def __init__(self):
+        self.name = "indoorview"
+        self.host = "localhost"
+        self.username = "admin"
+        self.password = "admin"
+
         try:
             self.mydb = mysql.connector.connect(
-                host="localhost",
-                user="admin",
-                passwd="admin"
+                host=self.host,
+                user=self.username,
+                passwd=self.password
             )
             self.mycursor = self.mydb.cursor()
-            self.mycursor.execute("CREATE DATABASE indoorview")
+            self.mycursor.execute("CREATE DATABASE IF NOT EXISTS indoorview")
         except Exception as e:
             print(e)
 
     def create_table(self, table_name):
+        """
+        Create a database table for this map, overwrite any existing tables with the same name
+
+        Parameters
+        ----------
+        table_name : str
+            the same as the name of the map
+        """
         try:
             self.mydb = mysql.connector.connect(
-                host="localhost",
-                user="admin",
-                passwd="admin",
-                database="indoorview"
+                host=self.host,
+                user=self.username,
+                passwd=self.password,
+                database=self.name
             )
             self.mycursor = self.mydb.cursor()
             self.mycursor.execute("DROP TABLE IF EXISTS " + table_name)
@@ -31,6 +48,16 @@ class Database:
             print(e)
 
     def add_map(self, name, imagepath):
+        """
+        Add our new database to the maps table
+
+        Parameters
+        ----------
+        name : str
+            map name
+        imagepath : str
+            image path to the maps png 
+        """
         try:
             self.mycursor.execute(
                 "INSERT INTO maps (name, imagepath) VALUES (%s, %s)", (name, imagepath)
@@ -40,6 +67,20 @@ class Database:
             print(e)
 
     def add_coordinate(self, table_name, coordx, coordy, image_path, mappedx, mappedy):
+        """
+        Add a set of coordinates and corresponding image
+
+        Parameters
+        ----------
+        table_name : str
+            map name
+        coordx, coordy : float
+            x y coordinates based on the ros map (origin in centre)
+        image_path : str
+            path to 360 image captured at those coordinates
+        mappedx, mappedy : float
+            x y corresponding coordinated with origin at top left
+        """
         try:
             self.mycursor.execute(
                 "INSERT INTO " + table_name +
@@ -48,9 +89,3 @@ class Database:
             self.mydb.commit()
         except Exception as e:
             print(e)
-
-
-if __name__ == "__main__":
-    database = Database()
-    database.create_table("maps")
-    # database.add("mytable1", "1.243534,58670956", "/image/jsfska.jpg")

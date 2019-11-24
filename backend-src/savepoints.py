@@ -44,7 +44,7 @@ class MapPoints:
         # Create table in database for our map
         self.database.create_table(self.name)
 
-        # Default map size in pixes
+        # Default map size in pixes can be found in rviz map launch file
         self.map_size = 160
 
         # Default map resolution in meters/pixel;
@@ -124,13 +124,17 @@ class MapPoints:
         os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name + ".yaml")
         rospy.loginfo("Estimate Initial Pose! Press Enter When Done")
         rospy.sleep(3)
+
+        # Publish markers on navigation node map
         self.add_marker_array()
+
+        # Wait for user to press enter when done then navigate
         usr_input = raw_input()
         self.perform_navigation()
 
     def perform_navigation(self):
         """
-        Autonomous navigation to every position saved
+        Autonomous navigation to every position saved in self.positions
         """
         for position in self.positions:
             success = self.navigator.goto(position, self.quaternion)
@@ -145,6 +149,12 @@ class MapPoints:
     def add_marker(self, position):
         """
         Adds marker to the plot, and to the database
+
+        Parameters
+        ----------
+        position : dict
+            'x' : x coordinate
+            'y' : y coordinate
         """
         marker = Marker()
         marker.header.frame_id = "map"
@@ -163,10 +173,14 @@ class MapPoints:
         self.marker_id_count += 1
         self.publisher.publish(marker)
 
+        # ROS coordinates have origin in centre of map, so we need to map to a coordinate system with origin in top left
         coordx = position['x']
         coordy = position['y']
         mappedx = position['x']/self.map_resolution + self.map_size/2
         mappedy = -1*position['y']/self.map_resolution + self.map_size/2
+
+        # Add both sets of coordinates to database with image path
+        # TODO get image path from camera capture module
         self.database.add_coordinate(
             self.name, coordx, coordy, "images/360.jpg", mappedx, mappedy)
 

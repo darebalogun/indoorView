@@ -16,7 +16,7 @@
 
     // Get all maps stored in the database
     function getAllMaps($pdo){
-        $sql = 'show tables from indoorview';
+        $sql = 'SELECT name FROM maps';
         return $pdo->query($sql);
     }
 
