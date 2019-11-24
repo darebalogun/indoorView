@@ -117,7 +117,7 @@ class MapPoints:
 
         # Plot points onto map, save as png and save to db
         showmap.add_points_to_map(
-            "../maps/" + self.name + ".pgm", self.map_resolution, self.map_size, self.positions)
+            "../frontend-webapp/maps/" + self.name + ".pgm", self.map_resolution, self.map_size, self.positions)
         self.database.add_map(self.name, "maps/" + self.name + ".png")
 
         # Launch self navigation node
@@ -163,11 +163,12 @@ class MapPoints:
         self.marker_id_count += 1
         self.publisher.publish(marker)
 
-        coordinates = str(position['x']) + ',' + str(position['y'])
+        coordx = position['x']
+        coordy = position['y']
         mappedx = position['x']/self.map_resolution + self.map_size/2
         mappedy = -1*position['y']/self.map_resolution + self.map_size/2
         self.database.add_coordinate(
-            self.name, coordinates, "images/360.jpg", mappedx, mappedy)
+            self.name, coordx, coordy, "images/360.jpg", mappedx, mappedy)
 
     def add_marker_array(self):
         """

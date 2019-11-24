@@ -30,14 +30,14 @@
     <div class="column" id="image_map">
       <map name="coord_map">
         <?php
+        $index = 0;
           foreach($coords as $coord){
-            $coordarray = explode("," , $coord[0]);
-            $convertedcoord = convertCoords($coordarray[0],$coordarray[1]);
+            $index = ($index + 1) % 2;
             echo("<area 
-                    href='javascript:newVrView(1);'
+                    href='javascript:newVrView(" . $index . ");'
                     target='_self'
                     shape='circle'
-                    coords='" . $convertedcoord[0] . "," . $convertedcoord[1] . ",2'
+                    coords='" . $coord[0] . "," . $coord[1] . ",2'
                     />");
           }
         ?>
