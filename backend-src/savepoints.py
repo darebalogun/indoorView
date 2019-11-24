@@ -6,6 +6,7 @@ import StartRVIZ
 import time
 import splitpoints
 import showmap
+from PIL import Image
 from savetodatabase import Database
 from geometry_msgs.msg import Pose, Point, Quaternion, PointStamped
 from visualization_msgs.msg import Marker, MarkerArray
@@ -115,9 +116,9 @@ class MapPoints:
             "gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name)
         rospy.sleep(3)
 
-        # Plot points onto map, save as png and save to db
-        showmap.add_points_to_map(
-            "../frontend-webapp/maps/" + self.name + ".pgm", self.map_resolution, self.map_size, self.positions)
+        # Convert to png and save as png and save to db
+        Image.open("../frontend-webapp/maps/" + self.name +
+                   ".pgm").save("../frontend-webapp/maps/" + self.name + ".png")
         self.database.add_map(self.name, "maps/" + self.name + ".png")
 
         # Launch self navigation node

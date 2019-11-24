@@ -20,6 +20,7 @@
     <link href="styles/style.css" rel="stylesheet" type="text/css" />
     <script src="includes/jquery-3.4.1.min.js"></script>
     <script src="includes/imageMapResizer.min.js"></script>
+    <script src="includes/jquery.maphilight.min.js"></script>
     <script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
   </head>
   <body>
@@ -71,6 +72,29 @@
     </div>
     <script>
     imageMapResize();
+    $.fn.maphilight.defaults = {
+      fill: true,
+      fillColor: 'ff0000',
+      fillOpacity: 0.2,
+      stroke: true,
+      strokeColor: 'ff0000',
+      strokeOpacity: 1,
+      strokeWidth: 1,
+      fade: true,
+      alwaysOn: true,
+      neverOn: false,
+      groupBy: false,
+      wrapClass: true,
+      shadow: false,
+      shadowX: 0,
+      shadowY: 0,
+      shadowRadius: 6,
+      shadowColor: '000000',
+      shadowOpacity: 0.8,
+      shadowPosition: 'outside',
+      shadowFrom: false
+    }
+    $('img[usemap]').maphilight();
     </script>
   </body>
 </html>
