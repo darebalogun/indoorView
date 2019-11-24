@@ -14,30 +14,28 @@
         return $pdo;
     }
 
+    // Get all maps stored in the database
     function getAllMaps($pdo){
         $sql = 'show tables from indoorview';
         return $pdo->query($sql);
     }
 
+    // Get image path of the requested map
     function getImagePathWithIndex($pdo, $index){
         $sql = 'SELECT imagepath FROM maps WHERE id=' . $index;
         return $pdo->query($sql);
     }
 
+    // Get name of requested map
     function getMapNameWithIndex($pdo, $index){
         $sql = 'SELECT name FROM maps WHERE id=' . $index;
         return $pdo->query($sql);
     }
 
+    // Get allcoordinates of the map
     function getAllCoordsForMap($pdo, $map_name){
-        $sql = 'SELECT coordinates FROM ' . $map_name;
+        $sql = 'SELECT mappedx, mappedy FROM ' . $map_name;
         return $pdo->query($sql);
-    }
-
-    function convertCoords($x, $y){
-        $floatx = ((float) $x)/0.05 + 80;
-        $floaty = (-1*((float) $y))/0.05 + 80;
-        return array($floatx, $floaty);
     }
 
 
