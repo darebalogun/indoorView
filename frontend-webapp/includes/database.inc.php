@@ -1,4 +1,6 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
+
     // Connect to database using credentials and return connection object
     function getConnectionInfo(){
         try {
