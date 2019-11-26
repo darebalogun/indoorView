@@ -53,8 +53,8 @@
         onVrViewLoad(0);
       });
       var images = [];
-      images.push("images/converted.jpg");
-      images.push("images/360.jpg")
+      images.push("https:cu-indoorview.herokuapp.com/images/converted.jpg");
+      images.push("https:cu-indoorview.herokuapp.com/images/360.jpg")
       function onVrViewLoad(index) {
         var vrView = new VRView.Player("#vrview", {
           image: images[index],
