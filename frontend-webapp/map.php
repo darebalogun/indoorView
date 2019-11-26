@@ -1,5 +1,6 @@
 <?php
   require_once('includes/database.inc.php');
+  cors();
   $pdo = getConnectionInfo();
   $map_name = getMapNameWithIndex($pdo, $_GET['map'])->fetchColumn(0);
   $imagepath = getImagePathWithIndex($pdo, $_GET['map'])->fetchColumn(0);
