@@ -2,9 +2,9 @@
     // Connect to database using credentials and return connection object
     function getConnectionInfo(){
         try {
-            define('DBCONNECTION', 'mysql:host=127.0.0.1;dbname=indoorview');
-            define('DBUSER', 'admin');
-            define('DBPASS', 'admin');
+            define('DBCONNECTION', 'mysql:host=remotemysql.com;dbname=KVZUJXHBYs');
+            define('DBUSER', 'KVZUJXHBYs');
+            define('DBPASS', 'gRXlKs1dZf');
 
             $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
         } catch(PDOException $e){
