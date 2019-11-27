@@ -7,10 +7,10 @@ class Database:
     """
 
     def __init__(self):
-        self.name = "indoorview"
-        self.host = "localhost"
-        self.username = "admin"
-        self.password = "admin"
+        self.name = "KVZUJXHBYs"
+        self.host = "remotemysql.com"
+        self.username = "KVZUJXHBYs"
+        self.password = "gRXlKs1dZf"
 
         try:
             self.mydb = mysql.connector.connect(
