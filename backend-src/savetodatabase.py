@@ -7,10 +7,10 @@ class Database:
     """
 
     def __init__(self):
-        self.name = "KVZUJXHBYs"
-        self.host = "remotemysql.com"
-        self.username = "KVZUJXHBYs"
-        self.password = "gRXlKs1dZf"
+        self.name = "sql9317665"
+        self.host = "sql9.freemysqlhosting.net"
+        self.username = "sql9317665"
+        self.password = "Rlkt5e4s9E"
 
         try:
             self.mydb = mysql.connector.connect(
