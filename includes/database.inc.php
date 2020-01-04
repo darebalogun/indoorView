@@ -3,9 +3,9 @@
     // Connect to database using credentials and return connection object
     function getConnectionInfo(){
         try {
-            define('DBCONNECTION', 'mysql:host=remotemysql.com;dbname=KVZUJXHBYs');
-            define('DBUSER', 'KVZUJXHBYs');
-            define('DBPASS', 'gRXlKs1dZf');
+            define('DBCONNECTION', 'mysql:host=sql9.freemysqlhosting.net;dbname=sql9317665');
+            define('DBUSER', 'sql9317665');
+            define('DBPASS', 'Rlkt5e4s9E');
 
             $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
         } catch(PDOException $e){
