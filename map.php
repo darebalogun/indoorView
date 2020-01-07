@@ -53,8 +53,8 @@
         onVrViewLoad(0);
       });
       var images = [];
-      images.push("images/converted.jpg");
-      images.push("images/360.jpg")
+      images.push("images/image1.JPG");
+      images.push("images/image2.JPG")
       function onVrViewLoad(index) {
         var vrView = new VRView.Player("#vrview", {
           image: images[index],
