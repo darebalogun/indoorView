@@ -16,9 +16,19 @@ The following instructions will show you how to get the system running and how t
 
 ### Prerequisites
 * TurtleBot 3 Burger
-* Computer running Ubuntu 16.04 xenial
+* PC running Ubuntu 16.04 xenial
 * Ricoh Theta S
 * Joystick controller (optional)
 
 ### Instructions
-Complete TurtleBot and ROS set-up following instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/)
+Complete TurtleBot setup and Install ROS on your PC by following instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/)
+
+Clone this repository on your PC
+```
+git clone https://github.com/darebalogun/indoorView.git
+```
+
+Launch SLAM node in RVIZ
+```
+python StartRVIZ
+```
