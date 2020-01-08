@@ -38,8 +38,8 @@ python StartRVIZ
 
 5. Navigate the robot around the area using the controller or using the keyboard. To use keyboard follow instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/teleoperation/#keyboard)
 
-6. Once the area is fully mapped, run savepoints.py
+6. Once the area is fully mapped, run mappoints.py
 ```
-python savepoints.py
+python mappoints.py
 ```
 
