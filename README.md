@@ -21,24 +21,24 @@ The following instructions will show you how to get the system running and how t
 * Joystick controller (optional)
 
 ### Instructions
-Complete TurtleBot setup and Install ROS on your PC by following instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/)
+1. Complete TurtleBot setup and Install ROS on your PC by following instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/)
 
-Clone this repository on your PC and cd into it
+2. Clone this repository on your PC and cd into it
 ```
 git clone https://github.com/darebalogun/indoorView.git
 cd indoorView
 ```
 
-If using the optional joystick PC controller, connect it to your PC now
+3. If using the optional joystick PC controller, connect it to your PC now
 
-Launch SLAM node in RVIZ
+4. Launch SLAM node in RVIZ
 ```
 python StartRVIZ
 ```
 
-Navigate the robot around the area using the controller or using the keyboard. To use keyboard follow instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/teleoperation/#keyboard)
+5. Navigate the robot around the area using the controller or using the keyboard. To use keyboard follow instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/teleoperation/#keyboard)
 
-Once the area is fully mapped, run savepoints.py
+6. Once the area is fully mapped, run savepoints.py
 ```
 python savepoints.py
 ```
