@@ -59,6 +59,8 @@ The following instructions will show you how to get the system running and how t
 
 10. Place the TurtleBot on the floor where its able to navigate around the room
 
+12. Open savetodatabase.py and configure database parameters
+
 11. Run mappoints.py then enter a name for the map
 ```
 (PC) $ python mappoints.py
