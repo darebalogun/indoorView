@@ -59,27 +59,27 @@ The following instructions will show you how to get the system running and how t
 
 10. Place the TurtleBot on the floor where its able to navigate around the room
 
-12. Open savetodatabase.py and configure database parameters
+11. Open savetodatabase.py and configure database parameters
 
-11. Run mappoints.py then enter a name for the map
+12. Run mappoints.py then enter a name for the map
 ```
 (PC) $ python mappoints.py
 Please enter a name for the map: [map_name]
 ```
 
-12. Navigate the robot around the area using the controller or using the keyboard. To use keyboard follow instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/teleoperation/#keyboard)
+13. Navigate the robot around the area using the controller or using the keyboard. To use keyboard follow instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/teleoperation/#keyboard)
 
-13. Once the area is fully mapped, click publish point at the top of the RVIZ window then click on points of interest on the map.
+14. Once the area is fully mapped, click publish point at the top of the RVIZ window then click on points of interest on the map.
     The map will autogenerate intermediary points spaced 0.5m apart
 
-14. Go back to the terminal window running mappoints and press enter when done
+15. Go back to the terminal window running mappoints and press enter when done
 
-15. A new RVIZ navigation window should pop up. [Estimate the initial pose](http://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#estimate-initial-pose)
+16. A new RVIZ navigation window should pop up. [Estimate the initial pose](http://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#estimate-initial-pose)
     1. Click 2D Pose Estimate near the top of the window
     2. Click (and hold) on the approximate location of the robot on the map 
     3. Align the green arrow with the approximate orientation of the robot on the map
     4. Move the robot back and forth a few times to align the map with SLAM information
 
-16. Return to the terminal window and press enter when done. The robot should navigate autonomously to the chosen points and capture images for the map
+17. Return to the terminal window and press enter when done. The robot should navigate autonomously to the chosen points and capture images for the map
 
-17. Point co-ordinates and location of images should now be saved to the database
+18. Point co-ordinates and location of images should now be saved to the database
