@@ -194,7 +194,7 @@ class MapPoints:
 
 
 if __name__ == '__main__':
-
+    mapname = raw_input("Please enter a name for the map: ")
     rospy.init_node('listener', anonymous=True)
-    mappoints = MapPoints("projectroom")
+    mappoints = MapPoints(mapname)
     mappoints.listener()
