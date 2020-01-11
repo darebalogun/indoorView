@@ -23,17 +23,17 @@ The following instructions will show you how to get the system running and how t
 ### Instructions
 1. Complete TurtleBot setup and Install ROS on your PC by following instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/)
 
-2. Clone this repository on your PC and cd into backend-src
+2. Clone this repository on your PC and cd into backend-src/remote-pc
 ```
 (PC) $ git clone https://github.com/darebalogun/indoorView.git
-(PC) $ cd indoorView/backend-src
+(PC) $ cd indoorView/backend-src/remote-pc
 ```
 
 3. Ensure the PC and the TurtleBot Raspberry Pi are connected to the same network
 
 4. Run NetworkConfig.py to perform network configuration on the PC. Note the IP address of the PC
 ```
-(PC) $ python NetworkConfig.py
+(PC) $ python NetworkConfigPC.py
 ```
 
 5. Start roscore server
