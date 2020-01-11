@@ -36,7 +36,7 @@ The following instructions will show you how to get the system running and how t
 (PC) $ python NetworkConfigPC.py
 ```
 
-5. Start roscore server
+5. Start roscore server (in another terminal)
 ```
 (PC) $ source ~/.bashrc
 (PC) $ roscore
@@ -44,7 +44,7 @@ The following instructions will show you how to get the system running and how t
 
 6. If using the optional joystick PC controller, connect it to your PC now
 
-7. Copy folder turtlebot onto the TurtleBot Raspberry Pi
+7. Copy folder turtlebot-pi onto the TurtleBot Raspberry Pi
 
 8. Cd into that folder on the Raspberry PI and perform network config by filling in the IP address of PC from step 4 (ctrl-X then Y to save) and running NetworkConfig.py
 ```
