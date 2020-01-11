@@ -117,8 +117,8 @@ class MapPoints:
         rospy.sleep(3)
 
         # Convert to png and save as png and save to db
-        Image.open("../frontend-webapp/maps/" + self.name +
-                   ".pgm").save("../frontend-webapp/maps/" + self.name + ".png")
+        Image.open("../../frontend-webapp/maps/" + self.name +
+                   ".pgm").save("../../frontend-webapp/maps/" + self.name + ".png")
         self.database.add_map(self.name, "maps/" + self.name + ".png")
 
         # Launch self navigation node
