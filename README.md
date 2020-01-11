@@ -91,3 +91,4 @@ Please enter a name for the map: [map_name]
     3. Photo spacing
 2. Quarternion calculations
 3. Start point from current location of robot
+4. Remove file structure naming pertinent to my pc
