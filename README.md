@@ -57,7 +57,7 @@ The following instructions will show you how to get the system running and how t
 (Pi) $ source ./startup.sh
 ```
 
-10. Place the TurtleBot on the floor where its able to navigate around the room
+10. Place the TurtleBot in the middle of the room on the floor where its able to navigate around the room
 
 11. Open savetodatabase.py and configure database parameters
 
@@ -83,3 +83,10 @@ Please enter a name for the map: [map_name]
 17. Return to the terminal window and press enter when done. The robot should navigate autonomously to the chosen points and capture images for the map
 
 18. Point co-ordinates and location of images should now be saved to the database
+
+### TO-DO
+1. Add config file with 
+    1. Map size
+    2. Map resolution
+    3. Photo spacing
+2. Quarternion calculations
