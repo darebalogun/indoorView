@@ -90,3 +90,4 @@ Please enter a name for the map: [map_name]
     2. Map resolution
     3. Photo spacing
 2. Quarternion calculations
+3. Start point from current location of robot
