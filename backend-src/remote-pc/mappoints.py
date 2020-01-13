@@ -6,12 +6,12 @@ import StartRVIZ
 import splitpoints
 import showmap
 import h_udp_client
+import subprocess
 from time import time
 from PIL import Image
 from savetodatabase import Database
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Empty
-from std_srvs.srv import Empty
 from geometry_msgs.msg import Pose, Point, Quaternion, PointStamped
 from visualization_msgs.msg import Marker, MarkerArray
 from go_to_specific_point_on_map import GoToPose
@@ -65,7 +65,7 @@ class MapPoints:
     def callback(self, data):
         """
         callback function is called whenever there a publish on the /clicked_point topic i.e whenever a published point
-        is added in rviz. 
+        is added in rviz.
 
         Parameters
         ----------
@@ -79,11 +79,9 @@ class MapPoints:
         while True:
             # TODO get starting point of robot here instead of (0,0)
             if not self.positions:
-                a = (0, 0)
-                '''
+                # a = (0, 0)
                 a = (self.x,
                      self.y)
-                '''
                 print(a)
             else:
                 a = (self.positions[-1]['x'], self.positions[-1]['y'])
@@ -119,17 +117,11 @@ class MapPoints:
         rospy.Subscriber("/odom", Odometry, self.get_location)
 
         # TODO reset odom
-        rospy.wait_for_service("/gazebo/reset_world")
-        reset_world = rospy.ServiceProxy("/gazebo/reset_world", Empty)
-        for x in range(100):
-            reset_world()
-
-        rospy.loginfo("Shutting down")
         rospy.spin()
 
     def check_for_done(self):
         """
-        Wait for the user to press enter to indicate done then process map and save info in database 
+        Wait for the user to press enter to indicate done then process map and save info in database
         """
         raw_input()
 
@@ -222,5 +214,9 @@ class MapPoints:
 if __name__ == '__main__':
     mapname = raw_input("Please enter a name for the map: ")
     rospy.init_node('listener', anonymous=True)
+    # pub = rospy.Publisher("/reset", Empty, queue_size=10)
+    # pub.publish(Empty())
+    os.system(
+        "gnome-terminal -x rostopic pub /reset std_msgs/Empty \"{}\" >/dev/null 2>&1")
     mappoints = MapPoints(mapname)
     mappoints.listener()

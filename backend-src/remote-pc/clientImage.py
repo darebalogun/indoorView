@@ -9,7 +9,7 @@ def client(image_count, map_name):
     cc = 1
     while (cc <= image_count):
         # server IP:
-        HOST = '172.17.19.133'
+        HOST = '172.17.3.3'
         #HOST = '192.168.0.11'
         PORT = 6666
 
