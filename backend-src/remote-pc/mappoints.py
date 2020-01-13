@@ -113,7 +113,6 @@ class MapPoints:
         # Subscribe to the /clicked_point topic
         rospy.Subscriber("/clicked_point", PointStamped, self.callback)
         rospy.Subscriber("/odom", Odometry, self.get_location)
-        # TODO reset odom
         try:
             rospy.wait_for_service("/gazebo/reset_world")
             reset_world = rospy.ServiceProxy("/gazebo/reset_world", Empty)
@@ -147,7 +146,7 @@ class MapPoints:
         self.add_marker_array()
 
         # Wait for user to press enter when done then navigate
-        usr_input = raw_input()
+        raw_input()
         self.perform_navigation()
 
     def perform_navigation(self):
@@ -155,6 +154,7 @@ class MapPoints:
         Autonomous navigation to every position saved in self.positions
         """
         for position in self.positions:
+            # TODO update quaternions
             success = self.navigator.goto(position, self.quaternion)
             if success:
                 rospy.loginfo("Hooray, reached the desired pose")
@@ -163,6 +163,8 @@ class MapPoints:
 
             # TODO Add image capture, processing and storage code here
             rospy.sleep(1)
+
+        # TODO Add code to rename and transfer data
 
     def add_marker(self, position):
         """

@@ -2,13 +2,13 @@
   require_once('includes/database.inc.php');
   $pdo = getConnectionInfo();
 
-  $maps = getAllMaps($pdo);
+  $maps = getAllMaps($pdo); 
 
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Indoor View</title>
+    <title>IndoorView</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <link
