@@ -3,11 +3,14 @@
 import os
 import rospy
 import StartRVIZ
-import time
 import splitpoints
 import showmap
+from time import time
 from PIL import Image
 from savetodatabase import Database
+from nav_msgs.msg import Odometry
+from std_msgs.msg import Empty
+from std_srvs.srv import Empty
 from geometry_msgs.msg import Pose, Point, Quaternion, PointStamped
 from visualization_msgs.msg import Marker, MarkerArray
 from go_to_specific_point_on_map import GoToPose
@@ -54,6 +57,10 @@ class MapPoints:
         # Between points on map to take photo in meters
         self.photo_spacing = 0.5
 
+    def get_location(self, data):
+        self.x = data.pose.pose.position.x
+        self.y = data.pose.pose.position.y
+
     def callback(self, data):
         """
         callback function is called whenever there a publish on the /clicked_point topic i.e whenever a published point
@@ -71,7 +78,9 @@ class MapPoints:
         while True:
             # TODO get starting point of robot here instead of (0,0)
             if not self.positions:
-                a = (0, 0)
+                a = (self.x,
+                     self.y)
+                print(a)
             else:
                 a = (self.positions[-1]['x'], self.positions[-1]['y'])
 
@@ -103,13 +112,21 @@ class MapPoints:
 
         # Subscribe to the /clicked_point topic
         rospy.Subscriber("/clicked_point", PointStamped, self.callback)
+        rospy.Subscriber("/odom", Odometry, self.get_location)
+        # TODO reset odom
+        try:
+            rospy.wait_for_service("/gazebo/reset_world")
+            reset_world = rospy.ServiceProxy("/gazebo/reset_world", Empty)
+            reset_world()
+        except:
+            rospy.loginfo("Shutting down")
         rospy.spin()
 
     def check_for_done(self):
         """
         Wait for the user to press enter to indicate done then process map and save info in database 
         """
-        usr_input = raw_input()
+        raw_input()
 
         rospy.loginfo("Saving Map...")
         os.system(
