@@ -23,20 +23,20 @@ The following instructions will show you how to get the system running and how t
 ### Instructions
 1. Complete TurtleBot setup and Install ROS on your PC by following instructions [here](http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/)
 
-2. Clone this repository on your PC and cd into backend-src
+2. Clone this repository on your PC and cd into backend-src/remote-pc
 ```
 (PC) $ git clone https://github.com/darebalogun/indoorView.git
-(PC) $ cd indoorView/backend-src
+(PC) $ cd indoorView/backend-src/remote-pc
 ```
 
 3. Ensure the PC and the TurtleBot Raspberry Pi are connected to the same network
 
 4. Run NetworkConfig.py to perform network configuration on the PC. Note the IP address of the PC
 ```
-(PC) $ python NetworkConfig.py
+(PC) $ python NetworkConfigPC.py
 ```
 
-5. Start roscore server
+5. Start roscore server (in another terminal)
 ```
 (PC) $ source ~/.bashrc
 (PC) $ roscore
@@ -44,7 +44,7 @@ The following instructions will show you how to get the system running and how t
 
 6. If using the optional joystick PC controller, connect it to your PC now
 
-7. Copy folder turtlebot onto the TurtleBot Raspberry Pi
+7. Copy folder turtlebot-pi onto the TurtleBot Raspberry Pi
 
 8. Cd into that folder on the Raspberry PI and perform network config by filling in the IP address of PC from step 4 (ctrl-X then Y to save) and running NetworkConfig.py
 ```
@@ -57,7 +57,7 @@ The following instructions will show you how to get the system running and how t
 (Pi) $ source ./startup.sh
 ```
 
-10. Place the TurtleBot on the floor where its able to navigate around the room
+10. Place the TurtleBot in the middle of the room on the floor where its able to navigate around the room
 
 11. Open savetodatabase.py and configure database parameters
 
@@ -83,3 +83,12 @@ Please enter a name for the map: [map_name]
 17. Return to the terminal window and press enter when done. The robot should navigate autonomously to the chosen points and capture images for the map
 
 18. Point co-ordinates and location of images should now be saved to the database
+
+### TO-DO
+1. Add config file with 
+    1. Map size
+    2. Map resolution
+    3. Photo spacing
+2. Quarternion calculations
+3. Start point from current location of robot
+4. Remove file structure naming pertinent to my pc
