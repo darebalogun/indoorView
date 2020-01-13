@@ -6,10 +6,10 @@ import time
 
 
 def client(image_count):
-    cc =1
-    while (cc<=image_count):
-        #server IP:
-        HOST = '172.17.7.6'
+    cc = 1
+    while (cc <= image_count):
+        # server IP:
+        HOST = '172.17.19.133'
         #HOST = '192.168.0.11'
         PORT = 6666
 
@@ -17,8 +17,7 @@ def client(image_count):
         server_address = (HOST, PORT)
         sock.connect(server_address)
 
-        fname = 'image' + str(cc) + '.jpg'
-
+        fname = '../../frontend-webapp/images/image' + str(cc) + '.jpg'
 
         def recvall(sock, msgLen):
             msg = ""
@@ -28,14 +27,15 @@ def client(image_count):
 
                 chunk = sock.recv(msgLen - bytesRcvd)
 
-                if chunk == "": break
+                if chunk == "":
+                    break
 
                 bytesRcvd += len(chunk)
                 msg += chunk
 
-                if "\r\n" in msg: break
+                if "\r\n" in msg:
+                    break
             return msg
-
 
         try:
 
@@ -74,7 +74,7 @@ def client(image_count):
                                     break
                                 #print 'here2'
                                 amount_received += len(data)
-                                
+
                                 #print "Amount of Data received: %s" %amount_received
 
                                 txt = data.strip('\r\n')
@@ -92,4 +92,3 @@ def client(image_count):
                                     myfile.write(data)
         finally:
             sock.close()
-

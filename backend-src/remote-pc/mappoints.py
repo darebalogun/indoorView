@@ -5,6 +5,7 @@ import rospy
 import StartRVIZ
 import splitpoints
 import showmap
+import h_udp_client
 from time import time
 from PIL import Image
 from savetodatabase import Database
@@ -78,8 +79,11 @@ class MapPoints:
         while True:
             # TODO get starting point of robot here instead of (0,0)
             if not self.positions:
+                a = (0, 0)
+                '''
                 a = (self.x,
                      self.y)
+                '''
                 print(a)
             else:
                 a = (self.positions[-1]['x'], self.positions[-1]['y'])
@@ -113,12 +117,14 @@ class MapPoints:
         # Subscribe to the /clicked_point topic
         rospy.Subscriber("/clicked_point", PointStamped, self.callback)
         rospy.Subscriber("/odom", Odometry, self.get_location)
-        try:
-            rospy.wait_for_service("/gazebo/reset_world")
-            reset_world = rospy.ServiceProxy("/gazebo/reset_world", Empty)
+
+        # TODO reset odom
+        rospy.wait_for_service("/gazebo/reset_world")
+        reset_world = rospy.ServiceProxy("/gazebo/reset_world", Empty)
+        for x in range(100):
             reset_world()
-        except:
-            rospy.loginfo("Shutting down")
+
+        rospy.loginfo("Shutting down")
         rospy.spin()
 
     def check_for_done(self):
@@ -162,9 +168,10 @@ class MapPoints:
                 rospy.loginfo("The base failed to reach the desired pose")
 
             # TODO Add image capture, processing and storage code here
-            rospy.sleep(1)
+            h_udp_client.hUDPClient("capture")
 
         # TODO Add code to rename and transfer data
+        h_udp_client.hUDPClient("save_all_images")
 
     def add_marker(self, position):
         """
