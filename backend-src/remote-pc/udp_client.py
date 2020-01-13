@@ -6,7 +6,7 @@ import time
 import clientImage
 
 
-def send_to_PI(host, message):
+def send_to_PI(host, message, map_name):
     # host = "192.168.0.11" #IP Address of Raspberry Pi
     port = 13000
     addr = (host, port)
@@ -33,7 +33,7 @@ def send_to_PI(host, message):
                 # Activate client.py
                 time.sleep(2)
                 print 'execute clientImage'
-                clientImage.client(image_count)
+                clientImage.client(image_count, map_name)
                 # execfile('clientImage.py')
 
             (data, addr) = UDPSock.recvfrom(1024)

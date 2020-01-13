@@ -168,10 +168,10 @@ class MapPoints:
                 rospy.loginfo("The base failed to reach the desired pose")
 
             # TODO Add image capture, processing and storage code here
-            h_udp_client.hUDPClient("capture")
+            h_udp_client.hUDPClient("capture", self.name)
 
         # TODO Add code to rename and transfer data
-        h_udp_client.hUDPClient("save_all_images")
+        h_udp_client.hUDPClient("save_all_images", self.name)
 
     def add_marker(self, position):
         """

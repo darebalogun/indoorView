@@ -5,7 +5,7 @@ import sys
 import time
 
 
-def client(image_count):
+def client(image_count, map_name):
     cc = 1
     while (cc <= image_count):
         # server IP:
@@ -17,7 +17,8 @@ def client(image_count):
         server_address = (HOST, PORT)
         sock.connect(server_address)
 
-        fname = '../../frontend-webapp/images/image' + str(cc) + '.jpg'
+        fname = '../../frontend-webapp/images/' + \
+            map_name + '/image' + str(cc) + '.jpg'
 
         def recvall(sock, msgLen):
             msg = ""

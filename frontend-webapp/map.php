@@ -33,13 +33,13 @@
         <?php
         $index = 0;
           foreach($coords as $coord){
-            $index = ($index + 1) % 2;
             echo("<area 
                     href='javascript:newVrView(" . $index . ");'
                     target='_self'
                     shape='circle'
                     coords='" . $coord[0] . "," . $coord[1] . ",2'
                   />");
+            $index = $index + 1;
           }
         ?>
       </map>
@@ -53,8 +53,12 @@
         onVrViewLoad(0);
       });
       var images = [];
-      images.push("images/image1.JPG");
-      images.push("images/image2.JPG")
+      var image_count = <?php echo $index ?>
+      var i;
+      for (i = 0; i < image_count; i++){
+        images.push("images/" + "<?php echo $map_name ?>" + "/image" + i.toString() + ".jpg");
+      }
+
       function onVrViewLoad(index) {
         var vrView = new VRView.Player("#vrview", {
           image: images[index],
