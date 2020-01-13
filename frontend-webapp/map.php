@@ -53,7 +53,7 @@
         onVrViewLoad(0);
       });
       var images = [];
-      var image_count = <?php echo $index ?>
+      var image_count = <?php echo $index ?>;
       var i;
       for (i = 0; i < image_count; i++){
         images.push("images/" + "<?php echo $map_name ?>" + "/image" + i.toString() + ".jpg");
