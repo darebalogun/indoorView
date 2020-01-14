@@ -79,10 +79,8 @@ class MapPoints:
         while True:
             # TODO get starting point of robot here instead of (0,0)
             if not self.positions:
-                # a = (0, 0)
                 a = (self.x,
                      self.y)
-                print(a)
             else:
                 a = (self.positions[-1]['x'], self.positions[-1]['y'])
 

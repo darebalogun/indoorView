@@ -14,13 +14,14 @@
 
 	<meta name="pinterest" content="nopin" />
 	<head>
-<<<<<<< 795f3f9962e58c092e74d037199a1cd95f2c4853:IndoorView/maps.html
-		<title>Mackenzie</title>
-=======
 		<title>Indoor View</title>
->>>>>>> Merge frontend design attempt:IndoorView/maps.php
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			href="//fonts.googleapis.com/css?family=Lora|Open+Sans"
+			rel="stylesheet"
+			type="text/css"
+		/>
 		<link rel="stylesheet" href="assets/css/main.css" type="text/css"/>
 		<link href="styles/style.css" rel="stylesheet" type="text/css" />
     	<script src="includes/jquery-3.4.1.min.js"></script>
@@ -39,7 +40,7 @@
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="index.html">SYSC 4907</span></a></div>
+				<div class="logo"><a href="index.php">IndoorView</span></a></div>
 				<a href="#menu">Menu</a>
 			</header>
 
@@ -72,33 +73,15 @@
 						<div class="inner">
 							<header class="align-center">
 
-								<p><span class="image right"><img src="images/IV.JPG" alt="" /></span><h1>Mackenzie Building - Level 4</h1></p>
+								<span class="image right"><img src="images/IV.JPG" alt="" /></span><h1><?php echo $map_name ?></h1>
 
 							</header>
 
 							<div class="align-left">
-
-								<h2>Explore and find your way around Carleton Univeristy.</h2>
-
-								<ul >
-								<li><h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5></li>
-								<li><h5>Search for specific rooms in the building using the search bar.</h5></li>
-
-								</ul>
-
-								<form method="post" action="#">
-										<div class="row uniform">
-											<div class="searchbar">
-												<input type="text" name="query" id="query" value="" placeholder = "Enter room number" />
-											</div>
-											<div class="searchbar">
-												<input type="submit" value="Search" class="fit" position: absolute; />
-											</div>
-										</div>
-									</form>								
+								<h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5>						
 							</div>
 							
-							
+						<div class="row">
 							<div class="column" id="image_map">
       							<map name="coord_map">
 									<?php
@@ -117,7 +100,63 @@
 								<?php
 									echo('<img src="'. $imagepath .'" usemap="#coord_map" />')
 								?>
-    							</div>
+								</div>
+
+								<div class="column" id="vrview"></div>
+									<script>
+									window.addEventListener("load", function(){
+										onVrViewLoad(0);
+									});
+									var images = [];
+									var image_count = <?php echo $index ?>;
+									var i;
+									for (i = 0; i < image_count; i++){
+										var j = i + 1;
+										images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg");
+									}
+
+									function onVrViewLoad(index) {
+										var vrView = new VRView.Player("#vrview", {
+										image: images[index],
+										is_stereo: false,
+										width: "100%",
+										height: "100%"
+										});
+									}
+
+									function newVrView(index){
+										var vrview = document.getElementById("vrview");
+										vrview.removeChild(vrview.childNodes[0]);
+										onVrViewLoad(index);
+									}
+									</script>
+							</div>
+							<script>
+								imageMapResize();
+								$.fn.maphilight.defaults = {
+								fill: true,
+								fillColor: 'ff0000',
+								fillOpacity: 0.2,
+								stroke: true,
+								strokeColor: 'ff0000',
+								strokeOpacity: 1,
+								strokeWidth: 1,
+								fade: true,
+								alwaysOn: true,
+								neverOn: false,
+								groupBy: false,
+								wrapClass: true,
+								shadow: false,
+								shadowX: 0,
+								shadowY: 0,
+								shadowRadius: 6,
+								shadowColor: '000000',
+								shadowOpacity: 0.8,
+								shadowPosition: 'outside',
+								shadowFrom: false
+								}
+								$('img[usemap]').maphilight();
+							</script>
 
 
 							

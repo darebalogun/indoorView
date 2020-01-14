@@ -1,3 +1,8 @@
+<?php
+  require_once('includes/database.inc.php');
+  $pdo = getConnectionInfo();
+  $maps = getAllMaps($pdo); 
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -50,8 +55,14 @@
 						<p>An Interactive Panoramic Viewing System for Indoor Spaces</p>
 					</header>
 					<h1>
-					<h3>					
-						<a href="maps.html" class="button">View the Map</a></a>
+					<h3>
+					<?php
+						$count = 0;
+						foreach ($maps as $map){
+						$count++;
+						echo("<a href='map.php?map=" . $count . "' class='button' style='margin:8px;'>" . $map[0] . "</a>"); 
+						}
+					?>
 					</h3>
 				</div>
 			</section>
