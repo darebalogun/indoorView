@@ -115,8 +115,6 @@ class MapPoints:
         # Subscribe to the /clicked_point topic
         rospy.Subscriber("/clicked_point", PointStamped, self.callback)
         rospy.Subscriber("/odom", Odometry, self.get_location)
-
-        # TODO reset odom
         rospy.spin()
 
     def check_for_done(self):
@@ -212,11 +210,9 @@ class MapPoints:
 
 
 if __name__ == '__main__':
-    mapname = raw_input("Please enter a name for the map: ")
-    rospy.init_node('listener', anonymous=True)
-    # pub = rospy.Publisher("/reset", Empty, queue_size=10)
-    # pub.publish(Empty())
     os.system(
         "gnome-terminal -x rostopic pub /reset std_msgs/Empty \"{}\" >/dev/null 2>&1")
+    mapname = raw_input("Please enter a name for the map: ")
+    rospy.init_node('listener', anonymous=True)
     mappoints = MapPoints(mapname)
     mappoints.listener()

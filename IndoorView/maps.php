@@ -1,13 +1,32 @@
+<?php
+  require_once('includes/database.inc.php');
+  //cors();
+  $pdo = getConnectionInfo();
+  $map_name = getMapNameWithIndex($pdo, $_GET['map'])->fetchColumn(0);
+  $imagepath = getImagePathWithIndex($pdo, $_GET['map'])->fetchColumn(0);
+  $coords = getAllCoordsForMap($pdo, $map_name)->fetchAll();
+
+?>
+
 <!DOCTYPE HTML>
 
 <html>
 
 	<meta name="pinterest" content="nopin" />
 	<head>
+<<<<<<< 795f3f9962e58c092e74d037199a1cd95f2c4853:IndoorView/maps.html
 		<title>Mackenzie</title>
+=======
+		<title>Indoor View</title>
+>>>>>>> Merge frontend design attempt:IndoorView/maps.php
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css" type="text/css"/>
+		<link href="styles/style.css" rel="stylesheet" type="text/css" />
+    	<script src="includes/jquery-3.4.1.min.js"></script>
+    	<script src="includes/imageMapResizer.min.js"></script>
+    	<script src="includes/jquery.maphilight.min.js"></script>
+    	<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
 	</head>
 	<body class="subpage">
 
@@ -80,40 +99,25 @@
 							</div>
 							
 							
-							<div>
-
-									
-									<span class="image fit"><img src="images/mintolevel7.JPG" width="828" height="681" alt="Map" usemap="#mintomap"></span>
-									
-									<map name="mintomap">
-									  
-									  <area shape="rect" coords="136,33,173,92" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="174,26,205,92" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="205,26,235,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="235,26,266,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="265,26,295,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="295,26,325,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="325,26,355,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="355,26,385,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="385,26,415,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="415,26,445,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="445,26,475,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="475,26,505,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="505,26,535,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="535,26,555,96" alt="rm1" href="_blank" target=" ">
-									  <area shape="rect" coords="565,26,585,96" alt="rm1" href="_blank" target=" ">
-
-
-
-
-
-									  
-
-
-
-									</map>
-									
-								</div>
+							<div class="column" id="image_map">
+      							<map name="coord_map">
+									<?php
+									$index = 0;
+									foreach($coords as $coord){
+										echo("<area 
+												href='javascript:newVrView(" . $index . ");'
+												target='_self'
+												shape='circle'
+												coords='" . $coord[0] . "," . $coord[1] . ",2'
+											/>");
+										$index = $index + 1;
+									}
+									?>
+								</map>
+								<?php
+									echo('<img src="'. $imagepath .'" usemap="#coord_map" />')
+								?>
+    							</div>
 
 
 							
