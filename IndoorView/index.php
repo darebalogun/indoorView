@@ -18,7 +18,7 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="index.php">SYSC 4907 </a> </div>
+				<div class="logo"><a href="index.html">SYSC 4907 </a> </div>
 				
 				<a href="#menu">Menu</a>
 						
@@ -30,10 +30,10 @@
 
 				
 				<ul class="links">
-					<li><a href="index.php">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="#">Maps</a>
 						<ul>
-								<li><a href="maps.php">Mackenzie L4</a></li>
+								<li><a href="maps.html">Mackenzie L4</a></li>
 								<li><a href="minto.html">Minto L7</a></li>
 								<li><a href="tunnels.html">Tunnels</a></li>
 
