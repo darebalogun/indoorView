@@ -53,7 +53,7 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a href="#">Maps</a>
 						<ul>
-								<li><a href="map.php">Mackenzie L4</a></li>
+								<li><a href="maps.html">Mackenzie L4</a></li>
 								<li><a href="minto.html">Minto L7</a></li>
 								<li><a href="tunnels.html">Tunnels</a></li>
 
