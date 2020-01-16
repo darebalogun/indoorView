@@ -7,6 +7,8 @@ import splitpoints
 import showmap
 import h_udp_client
 import subprocess
+import anglebtwnpoints
+import pyquaternion
 from time import time
 from PIL import Image
 from savetodatabase import Database
@@ -34,8 +36,12 @@ class MapPoints:
         # Array of position objects. Each position is 2 long python dictionary with 'x' and 'y' keys with positions
         self.positions = []
 
+        # Array of quaternions
+        self.orientations = []
+
         # TODO: Calculate quaternion based on previous point
-        self.quaternion = {'r1': 0.000, 'r2': 0.000, 'r3': 0.000, 'r4': 1.000}
+        #                   x               y           z           w
+        self.quaternion = {'x': 0.000, 'y': 0.000, 'z': 0.000, 'w': 1.000}
 
         # Publisher for points on map
         self.publisher = rospy.Publisher(
@@ -62,6 +68,8 @@ class MapPoints:
         self.x = data.pose.pose.position.x
         self.y = data.pose.pose.position.y
 
+        self.orientation = data.pose.pose.orientation
+
     def callback(self, data):
         """
         callback function is called whenever there a publish on the /clicked_point topic i.e whenever a published point
@@ -81,8 +89,12 @@ class MapPoints:
             if not self.positions:
                 a = (self.x,
                      self.y)
+
+                pose = {'x': self.orientation.x, 'y': self.orientation.y,
+                        'z': self.orientation.z, 'w': self.orientation.w}
             else:
                 a = (self.positions[-1]['x'], self.positions[-1]['y'])
+                pose = self.orientations[-1]
 
             b = (data.point.x, data.point.y)
 
@@ -92,11 +104,27 @@ class MapPoints:
                 position = {'x': data.point.x, 'y': data.point.y}
                 self.positions.append(position)
                 self.add_marker(position)
+                angle = -1 * \
+                    anglebtwnpoints.getangle(a, (position['x'], position['y']))
+                rotation = pyquaternion.Quaternion(
+                    axis=[0.0, 0.0, 1.0], radians=angle)
+                new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
+                            'z': rotation.elements[3], 'w': rotation.elements[0]}
+                print(angle)
+                self.orientations.append(new_pose)
                 break
 
             position = {'x': midx, 'y': midy}
             self.positions.append(position)
             self.add_marker(position)
+            angle = -1 * \
+                anglebtwnpoints.getangle(a, (position['x'], position['y']))
+            rotation = pyquaternion.Quaternion(
+                axis=[0.0, 0.0, 1.0], radians=angle)
+            new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
+                        'z': rotation.elements[3], 'w': rotation.elements[0]}
+            print(angle)
+            self.orientations.append(new_pose)
 
     def listener(self):
         """
@@ -147,9 +175,10 @@ class MapPoints:
         """
         Autonomous navigation to every position saved in self.positions
         """
+        x = 0
         for position in self.positions:
             # TODO update quaternions
-            success = self.navigator.goto(position, self.quaternion)
+            success = self.navigator.goto(position, self.orientations[x])
             if success:
                 rospy.loginfo("Hooray, reached the desired pose")
             else:
@@ -157,6 +186,9 @@ class MapPoints:
 
             # TODO Add image capture, processing and storage code here
             h_udp_client.hUDPClient("capture", self.name)
+            # rospy.sleep(1)
+
+            x = x + 1
 
         # TODO Add code to rename and transfer data
         h_udp_client.hUDPClient("save_all_images", self.name)

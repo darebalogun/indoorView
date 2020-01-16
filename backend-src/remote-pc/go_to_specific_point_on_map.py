@@ -50,7 +50,7 @@ class GoToPose():
         goal.target_pose.header.frame_id = 'map'
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.pose = Pose(Point(pos['x'], pos['y'], 0.000),
-                                     Quaternion(quat['r1'], quat['r2'], quat['r3'], quat['r4']))
+                                     Quaternion(quat['x'], quat['y'], quat['z'], quat['w']))
 
         # Start moving
         self.move_base.send_goal(goal)
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 
         # Customize the following values so they are appropriate for your location
         position = {'x': -1.540156, 'y': 0.666174}
-        quaternion = {'r1': 0.000, 'r2': 0.000, 'r3': 0.000, 'r4': 1.000}
+        quaternion = {'x': 0.000, 'y': 0.000, 'z': 0.000, 'w': 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
         success = navigator.goto(position, quaternion)
