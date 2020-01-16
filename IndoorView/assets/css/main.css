@@ -48,7 +48,7 @@ body {
 	iframe {
 	  height: 600px;
 	  width: 100%;
-	  margin: 1rem auto;
+	  /* margin: 1rem auto; */
 	  display: block;
 	}
    
@@ -697,7 +697,7 @@ body {
 			}
 
 		.flex.flex-2 .col {
-			width: 48%;
+			width: 100%;
 		}
 
 			.flex.flex-2 .col.col1 {
@@ -712,12 +712,12 @@ body {
 
 				.flex.flex-2 .col.col1, .flex.flex-2 .col.col2 {
 					width: 100%;
-					margin-bottom: 2em;
+					/* margin-bottom: 1px; */
 				}
 
 					.flex.flex-2 .col.col1 .image, .flex.flex-2 .col.col2 .image {
 						max-width: 60%;
-						margin: 0 auto 2em auto;
+						/* margin: 0 auto 2px auto; */
 					}
 
 			}
@@ -730,12 +730,12 @@ body {
 
 				.flex.flex-3 .col {
 					width: 100%;
-					margin-bottom: 2em;
+					/* margin-bottom: 2px; */
 				}
 
 					.flex.flex-3 .col .image {
 						max-width: 60%;
-						margin: 0 auto 2em auto;
+						/* margin: 0 auto 2em auto; */
 					}
 
 			}
@@ -805,7 +805,7 @@ body {
 
 		.image.left {
 			float: left;
-			margin: 0 1.5em 1em 0;
+			/* margin: 0 1px 1px 0; */
 			top: 0.25em;
 		}
 
@@ -821,9 +821,9 @@ body {
 		}
 
 		/* used for the vriew */
-		.image.fit {
+		/* .image.fit {
 			display: block;
-			/* margin: 0 0 2em 0; */
+			margin: 0 0 2em 0;
 			margin-top: 30px;
 			margin-right: 10px;
 			margin-bottom: 40px;
@@ -831,17 +831,54 @@ body {
 			width: 37em;  
 			height: 41.08em;
 			
-		}
+		} */
+
+
+
+		/* used for the vriew */
+        .image.fit {
+            display: block;
+            /* margin: 0 0 2em 0; */
+             margin-top: 20px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            /* width: 37em;  
+			height: 41.08em;   */
+
+			float: right; 
+			/* margin: 0px 0px 0px 0px; */
+		    /* boarder is padding */
+            padding: 1px;
+            max-height: 100%;
+            height: 50%;
+			width: 55%;
+			width: 40em;  
+			height: 41.08em;
+			/* -moz-align-items: stretch;
+			-webkit-align-items: stretch;
+			-ms-align-items: stretch;
+			align-items: stretch; */
+            
+        }
+
 		/* used for the map  */
 		.image.app {
 			display: block;
 			/* margin: 0 0 2em 0; */
-			margin-top: 0.5px;
-			margin-right: 2px;
+			/* padding is for coords  */
+			padding: 0.1px;
+			/* margin-top: 0.5px; */
+			/* margin-right: 2px; */
 			margin-bottom: 20px;
-			margin-left: 10px;
+			/* margin-left: 10px; */
+			height: 70%;
+			width: 50%;  
 			width: 37em;  
-			height: 37em;
+			height: 41.0em;
+			background-position: left;
+		    float: left;
+			
 		} 
 
 
@@ -860,7 +897,7 @@ body {
 
 		.image.main {
 			display: block;
-			margin: 0 0 3em 0;
+			margin: 0 0 3px 0;
 			width: 100%;
 		}
 
@@ -1011,7 +1048,7 @@ body {
 			@media screen and (max-width: 480px) {
 
 				ul.actions {
-					margin: 0 0 2em 0;
+					/* margin: 0 0 2em 0; */
 				}
 
 					ul.actions li {
@@ -1121,7 +1158,7 @@ body {
 		}
 
 		.wrapper header {
-			margin-bottom: 4em;
+			/* margin-bottom: 4em; */
 		}
 
 			@media screen and (max-width: 736px) {
@@ -1605,8 +1642,11 @@ body {
 				color: #3498db;
 			}
 
+			/* menu size and color */
 			#header > a[href="#menu"] {
 				text-decoration: none;
+				font-size: 1.5em;
+				color: #3498db;
 				-webkit-tap-highlight-color: transparent;
 			}
 
@@ -1625,7 +1665,7 @@ body {
 				}
 
 			#header > a + a[href="#menu"]:last-child {
-				border-left: solid 1px rgba(255, 255, 255, 0.25);
+				border-left: solid 1px rgba(25, 103, 219, 0.25);
 				padding-left: 1.25em;
 				margin-left: 0.5em;
 			}
@@ -1750,7 +1790,7 @@ body {
 					#menu > ul.links > li > a:not(.button) {
 						border: 0;
 						border-top: solid 1px rgba(255, 255, 255, 0.25);
-						color: inherit;
+						color: rgb(83, 202, 218);
 						display: block;
 						line-height: 3.5em;
 						text-decoration: none;
@@ -1800,9 +1840,9 @@ body {
 				font-weight: normal;
 				text-transform: none !important;
 			}
-
+/* the x in the menu  */
 			#menu .close:before {
-				font-size: 1.25em;
+				font-size: 1.4em;
 			}
 
 			#menu .close:hover {
