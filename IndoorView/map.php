@@ -5,6 +5,7 @@
   $map_name = getMapNameWithIndex($pdo, $_GET['map'])->fetchColumn(0);
   $imagepath = getImagePathWithIndex($pdo, $_GET['map'])->fetchColumn(0);
   $coords = getAllCoordsForMap($pdo, $map_name)->fetchAll();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -22,7 +23,7 @@
 			type="text/css"
 		/>
 		<link rel="stylesheet" href="assets/css/main.css" type="text/css"/>
-		<!-- <link href="styles/style.css" rel="stylesheet" type="text/css" /> -->
+		<link href="styles/style.css" rel="stylesheet" type="text/css" />
     	<script src="includes/jquery-3.4.1.min.js"></script>
     	<script src="includes/imageMapResizer.min.js"></script>
     	<script src="includes/jquery.maphilight.min.js"></script>
@@ -49,10 +50,10 @@
 
 				
 				<ul class="links">
-					<li><a href="index.php">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li><a href="#">Maps</a>
 						<ul>
-								<li><a href="maps.php">Mackenzie L4</a></li>
+								<li><a href="map.php">Mackenzie L4</a></li>
 								<li><a href="minto.html">Minto L7</a></li>
 								<li><a href="tunnels.html">Tunnels</a></li>
 
@@ -77,7 +78,6 @@
 							</header>
 
 							<div class="align-left">
-								<h2>Explore and find your way around Carleton Univeristy.</h2>
 								<h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5>						
 							</div>
 							
@@ -92,31 +92,17 @@
 												target='_self'
 												shape='circle'
 												coords='" . $coord[0] . "," . $coord[1] . ",2'
-										
-												/>");
+											/>");
 										$index = $index + 1;
 									}
 									?>
 								</map>
-								<!-- <div align="right">  -->
 								<?php
-								
-									// in order to formal the map use image app
-									echo('<img src="'. $imagepath .'" usemap="#coord_map" class="image app"/>')
-									
+									echo('<img src="'. $imagepath .'" usemap="#coord_map" />')
 								?>
-								<!-- </div> -->
 								</div>
 
-
-
-								<!-- in order to fit the vriew screen set the class to image fit and align right -->
-								<div align= "right"> 
-								<class="column" id="vrview" class="image fit">
-
-								</div>
-
-
+								<div class="column" id="vrview"></div>
 									<script>
 									window.addEventListener("load", function(){
 										onVrViewLoad(0);
@@ -126,8 +112,9 @@
 									var i;
 									for (i = 0; i < image_count; i++){
 										var j = i + 1;
-										images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg" );
+										images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg");
 									}
+
 									function onVrViewLoad(index) {
 										var vrView = new VRView.Player("#vrview", {
 										image: images[index],
@@ -136,18 +123,14 @@
 										height: "100%"
 										});
 									}
+
 									function newVrView(index){
 										var vrview = document.getElementById("vrview");
 										vrview.removeChild(vrview.childNodes[0]);
 										onVrViewLoad(index);
 									}
 									</script>
-
 							</div>
-						
-
-							
-
 							<script>
 								imageMapResize();
 								$.fn.maphilight.defaults = {
@@ -175,7 +158,10 @@
 								$('img[usemap]').maphilight();
 							</script>
 
-<!-- Scripts -->
+
+							
+
+		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
