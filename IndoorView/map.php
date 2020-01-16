@@ -111,10 +111,13 @@
 
 
 								<!-- in order to fit the vriew screen set the class to image fit and align right -->
-								<div align= "right"> 
+								<!-- <div align= "right"> 
 								<class="column" id="vrview" class="image fit">
 
-								</div>
+								</div> -->
+								<!-- align= "flex"  -->
+
+								<div id="vrview" class="image fit"></div>
 
 
 									<script>
