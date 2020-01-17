@@ -68,7 +68,7 @@
 			<div id="main">
 
 				<!-- Section -->
-					<section class="wrapper">
+				<section class="wrapper">
 						<div class="inner">
 							<header class="align-center">
 
@@ -80,9 +80,10 @@
 								<h2>Explore and find your way around Carleton Univeristy.</h2>
 								<h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5>						
 							</div>
-							
+						</div>
+				</section>
 						<div class="row">
-							<div class="column" id="image_map">
+							<div class="column map" id="image_map">
       							<map name="coord_map">
 									<?php
 									$index = 0;
@@ -103,7 +104,7 @@
 								<?php
 								
 									// in order to formal the map use image app
-									echo('<img src="'. $imagepath .'" usemap="#coord_map" class="image app"/>')
+									echo('<img src="'. $imagepath .'" usemap="#coord_map"/>')
 									
 								?>
 								<!-- </div> -->
@@ -118,7 +119,7 @@
 								</div> -->
 								<!-- align= "flex"  -->
 
-								<div id="vrview" class="image fit"></div>
+								<div id="vrview" class="column vrview"></div>
 
 
 									<script>
