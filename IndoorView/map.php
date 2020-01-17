@@ -178,6 +178,8 @@
 								shadowFrom: false
 								}
 								$('img[usemap]').maphilight();
+
+								window.onresize = function(){$('.column.map img').load("map.php"); console.log("Hello");}
 							</script>
 
 <!-- Scripts -->
