@@ -155,7 +155,7 @@ iframe {
 }
 
 /* MOBILE */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 600px) {
   .column {
     margin: 0;
   }
@@ -366,7 +366,7 @@ h1 {
   margin-bottom: 0.25em;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 600px) {
   h1 {
     font-size: 2.5em;
   }
@@ -381,7 +381,7 @@ h7 {
   color: #677272;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 600px) {
   h2 {
     font-size: 1em;
   }
@@ -411,7 +411,7 @@ h3 {
   font-family: Georgia;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 600px) {
   h3 {
     font-size: 1em;
   }
@@ -432,7 +432,7 @@ h5 {
   font-size: 1.5em;
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 600px) {
   h5 {
     font-size: 1em;
   }
