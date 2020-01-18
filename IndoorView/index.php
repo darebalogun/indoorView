@@ -59,8 +59,8 @@
 					<?php
 						$count = 0;
 						foreach ($maps as $map){
-							$count++;
-							echo("<a href='map.php?map=" . $count . "' class='button' style='margin:8px;'>" . $map[0] . "</a>"); 
+						$count++;
+						echo("<a href='map.php?map=" . $count . "' class='button' style='margin:8px;'>" . $map[0] . "</a>"); 
 						}
 					?>
 					</h3>
