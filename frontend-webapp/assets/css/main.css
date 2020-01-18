@@ -132,7 +132,7 @@ iframe {
 .column.map img {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: fill;
 }
 
@@ -147,6 +147,22 @@ iframe {
 @media screen and (max-width: 600px) {
   iframe {
     height: 240px;
+  }
+
+  .column.map {
+    overflow: auto;
+    position: relative;
+    display: inline-block;
+    box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    /*width: 33.15%;*/
+    width: 100%;
+  }
+
+  .column.vrview {
+    display: inline-block;
+    padding: 1px;
+    width: 100%;
+    box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
   }
 }
 /* DESKTOP */
@@ -864,8 +880,9 @@ ul li {
 }
 
 .wrapper .inner {
+  overflow-wrap: break-word;
   margin: 0 auto;
-  width: 80em;
+  width: 80%;
   position: relative;
   z-index: 99;
 }
