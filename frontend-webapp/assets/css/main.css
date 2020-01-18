@@ -160,6 +160,10 @@ iframe {
     height: 240px;
   }
 
+  .column {
+    margin: 0;
+  }
+
   .column.map {
     overflow: auto;
     position: relative;
