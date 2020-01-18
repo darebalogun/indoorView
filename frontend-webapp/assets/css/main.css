@@ -155,11 +155,7 @@ iframe {
 }
 
 /* MOBILE */
-@media screen and (max-width: 600px) {
-  iframe {
-    height: 240px;
-  }
-
+@media screen and (max-width: 900px) {
   .column {
     margin: 0;
   }
@@ -387,7 +383,7 @@ h7 {
 
 @media screen and (max-width: 736px) {
   h2 {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 
@@ -399,7 +395,7 @@ h7 {
 
 @media screen and (max-width: 480px) {
   h2 {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 
@@ -423,7 +419,7 @@ h3 {
 
 @media screen and (max-width: 480px) {
   h3 {
-    font-size: 1.25em;
+    font-size: 1em;
     color: #8c9397;
   }
 }
@@ -434,6 +430,12 @@ h4 {
 
 h5 {
   font-size: 1.5em;
+}
+
+@media screen and (max-width: 736px) {
+  h5 {
+    font-size: 1em;
+  }
 }
 
 h6 {
