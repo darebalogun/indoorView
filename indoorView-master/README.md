@@ -89,7 +89,6 @@ Please enter a name for the map: [map_name]
     1. Map size
     2. Map resolution
     3. Photo spacing
-2. ~Quarternion calculations~
-3. ~Start point from current location of robot~
+2. Quarternion calculations
+3. Start point from current location of robot
 4. Remove file structure naming pertinent to my pc
-5. More user friendly CLI
