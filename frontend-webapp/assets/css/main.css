@@ -18,6 +18,17 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: MoonLight;
+  src: url("../fonts/Moon\ Light.otf");
+}
+
+@font-face {
+  font-family: MoonBold;
+  src: url("../fonts/Moon\ Bold.otf");
+}
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -372,7 +383,7 @@ h2 {
 
 @media screen and (max-width: 480px) {
   h2 {
-    font-size: 3.5em;
+    font-size: 1.5em;
   }
 }
 
@@ -467,11 +478,11 @@ h1 {
 }
 
 h2 {
-  color: rgb(146, 139, 139);
+  color: rgb(10, 0, 0);
 }
 
 h3 {
-  color: rgb(185, 166, 166);
+  color: rgb(10, 0, 0);
 }
 
 h4 {
@@ -479,7 +490,7 @@ h4 {
 }
 
 h5 {
-  color: rgb(148, 134, 134);
+  color: rgb(10, 0, 0);
 }
 
 h6 {
