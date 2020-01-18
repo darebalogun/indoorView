@@ -343,7 +343,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+h7 {
   font-weight: 700;
   line-height: 1;
   margin: 0 0 1em 0;
@@ -354,7 +355,8 @@ h2 a,
 h3 a,
 h4 a,
 h5 a,
-h6 a {
+h6 a,
+h7 a{
   color: inherit;
   text-decoration: none;
 }
@@ -374,6 +376,10 @@ h2 {
   font-size: 1.7em;
   color: #060707;
 }
+h7 {
+  font-size: 1.7em;
+  color: #677272;
+}
 
 @media screen and (max-width: 736px) {
   h2 {
@@ -381,8 +387,20 @@ h2 {
   }
 }
 
+@media screen and (max-width: 736px) {
+  h7 {
+    font-size: 1.5em;
+  }
+}
+
 @media screen and (max-width: 480px) {
   h2 {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h7 {
     font-size: 1.5em;
   }
 }
@@ -482,7 +500,7 @@ h2 {
 }
 
 h3 {
-  color: rgb(10, 0, 0);
+  color: rgb(110, 105, 105);
 }
 
 h4 {
@@ -495,6 +513,9 @@ h5 {
 
 h6 {
   color: rgb(10, 0, 0);
+}
+h2 {
+  color: rgb(12, 9, 9);
 }
 
 blockquote {
@@ -781,7 +802,7 @@ button.special:active,
 .flex.flex-tabs .tabs {
   width: 77%;
 }
-*/
+
 
   
 
@@ -900,6 +921,27 @@ ul li {
 
 @media screen and (max-width: 736px) {
   .wrapper header {
+    margin-bottom: 2em;
+  }
+}
+
+/* Wrapper2 for applications and about us*/
+
+.wrapper2 {
+  padding: 1.5em 0 1.5em 0;
+  position: relative;
+}
+
+.wrapper2 .inner {
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  width: 90%;
+  position: relative;
+  z-index: 99;
+}
+
+@media screen and (max-width: 736px) {
+  .wrapper2 header {
     margin-bottom: 2em;
   }
 }
