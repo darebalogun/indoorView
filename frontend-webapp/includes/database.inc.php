@@ -35,7 +35,12 @@
 
     // Get allcoordinates of the map
     function getAllCoordsForMap($pdo, $map_name){
-        $sql = 'SELECT mappedx, mappedy FROM ' . $map_name;
+        $sql = 'SELECT mappedx, mappedy FROM ' . $map_name . ' ORDER BY id';
+        return $pdo->query($sql);
+    }
+
+    function getAllImagePaths($pdo, $map_name){
+        $sql = 'SELECT image_path FROM ' . $map_name . ' ORDER BY id';
         return $pdo->query($sql);
     }
 
