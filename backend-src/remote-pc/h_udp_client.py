@@ -6,7 +6,7 @@ import sys
 
 def hUDPClient(command, map_name):
     #command = raw_input("Enter_command:")
-    RASPBERRY_PI_IP = "172.17.3.3"
+    RASPBERRY_PI_IP = "172.17.9.206"
 
     # If a = 1 this means command was successful
 

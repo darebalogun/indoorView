@@ -56,13 +56,13 @@ class MapPoints:
         self.database.create_table(self.name)
 
         # Default map size in pixes can be found in rviz map launch file
-        self.map_size = 160
+        self.map_size = StartRVIZ.get_map_size()
 
         # Default map resolution in meters/pixel;
-        self.map_resolution = 0.05
+        self.map_resolution = StartRVIZ.get_map_resolution()
 
         # Between points on map to take photo in meters
-        self.photo_spacing = 0.5
+        self.photo_spacing = StartRVIZ.get_photo_spacing()
 
     def get_location(self, data):
         self.x = data.pose.pose.position.x
@@ -154,6 +154,9 @@ class MapPoints:
             "gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name)
         rospy.sleep(3)
 
+        # Save all points to db
+        self.save_all_points_db()
+
         # Convert to png and save as png and save to db
         Image.open("../../frontend-webapp/maps/" + self.name +
                    ".pgm").save("../../frontend-webapp/maps/" + self.name + ".png")
@@ -220,6 +223,10 @@ class MapPoints:
         self.marker_id_count += 1
         self.publisher.publish(marker)
 
+    def save_point(self, position, index):
+        """
+        Save point to database
+        """
         # ROS coordinates have origin in centre of map, so we need to map to a coordinate system with origin in top left
         coordx = position['x']
         coordy = position['y']
@@ -229,7 +236,7 @@ class MapPoints:
         # Add both sets of coordinates to database with image path
         # TODO get image path from camera capture module
         self.database.add_coordinate(
-            self.name, coordx, coordy, "images/360.jpg", mappedx, mappedy)
+            self.name, coordx, coordy, "images/image" + str(index + 1) + ".jpg", mappedx, mappedy)
 
     def add_marker_array(self):
         """
@@ -237,6 +244,13 @@ class MapPoints:
         """
         for position in self.positions:
             self.add_marker(position)
+
+    def save_all_points_db(self):
+        """
+        Save all points to db
+        """
+        for index, position in enumerate(self.positions):
+            self.save_point(position, index)
 
 
 if __name__ == '__main__':

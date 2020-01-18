@@ -9,23 +9,24 @@ import shutil
 
 def client(image_count, map_name):
     cc = 1
+
+    image_folder = "../../frontend-webapp/images/" + map_name
+
+    if not os.path.exists(image_folder):
+        os.mkdir(image_folder)
+    else:
+        shutil.rmtree(image_folder)
+        os.mkdir(image_folder)
+
     while (cc <= image_count):
         # server IP:
-        HOST = '172.17.3.3'
+        HOST = '172.17.9.206'
         #HOST = '192.168.0.11'
         PORT = 6666
 
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = (HOST, PORT)
         sock.connect(server_address)
-
-        image_folder = "../../frontend-webapp/images/" + map_name
-
-        if not os.path.exists(image_folder):
-            os.mkdir(image_folder)
-        else:
-            shutil.rmtree(image_folder)
-            os.mkdir(image_folder)
 
         fname = '../../frontend-webapp/images/' + \
             map_name + '/image' + str(cc) + '.jpg'
