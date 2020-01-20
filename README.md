@@ -86,11 +86,12 @@ Please enter a name for the map: [map_name]
 
 ### TO-DO
 1. ~Add config file with:~ 
-    1. Map size
-    2. Map resolution
-    3. Photo spacing
+    1. ~Map size~
+    2. ~Map resolution~
+    3. ~Photo spacing~
 2. ~Quarternion calculations~
 3. ~Start point from current location of robot~
 4. Remove file structure naming pertinent to my pc
 5. More user friendly CLI
 6. Update Readme with config file steps
+7. Update menu in html pages
