@@ -93,7 +93,7 @@
 							onVrViewLoad(0);
 						});
 						var images = [];
-						var image_count = <?php echo $index ?>;
+						var image_count = <?php echo $index + 1?>;
 						var i;
 						for (i = 0; i < image_count; i++){
 							var j = i + 1;
@@ -140,7 +140,6 @@
 				}
 				$('img[usemap]').maphilight();
 
-				window.onresize = function(){$('.column.map img').load("map.php"); console.log("Hello");}
 			</script>	
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
