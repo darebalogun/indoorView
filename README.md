@@ -98,3 +98,4 @@ Please enter a name for the map: [map_name]
 8. Fix auto-increment ID bug in database
 9. Reduce max velocity for stability
 10. Fix map coordinates size and positions
+11. Clean up folder structure on PI
