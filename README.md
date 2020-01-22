@@ -95,3 +95,4 @@ Please enter a name for the map: [map_name]
 5. More user friendly CLI
 6. Update Readme with config file steps
 7. Update menu in html pages
+8. Fix auto-increment ID bug in database
