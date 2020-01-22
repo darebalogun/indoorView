@@ -96,6 +96,6 @@ Please enter a name for the map: [map_name]
 6. Update Readme with config file steps
 7. Update menu in html pages
 8. ~Fix auto-increment ID bug in database~
-9. Reduce max velocity for stability
+9. ~Reduce max velocity for stability~
 10. Fix map coordinates size and positions
 11. Clean up folder structure on PI
