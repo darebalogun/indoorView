@@ -78,7 +78,7 @@
 										href='javascript:newVrView(" . $index . ");'
 										target='_self'
 										shape='circle'
-										coords='" . $coord[0] . "," . $coord[1] . ",2'	
+										coords='" . $coord[0] . "," . $coord[1] . ",12'	
 										/>");
 								}
 						?>
@@ -119,7 +119,7 @@
 				$.fn.maphilight.defaults = {
 				fill: true,
 				fillColor: 'ff0000',
-				fillOpacity: 0.2,
+				fillOpacity: 0.1,
 				stroke: true,
 				strokeColor: 'ff0000',
 				strokeOpacity: 1,

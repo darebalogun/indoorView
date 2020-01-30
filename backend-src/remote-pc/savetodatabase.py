@@ -59,6 +59,12 @@ class Database:
             image path to the maps png 
         """
         try:
+            self.mycursor.execute("SELECT MAX(id) AS max FROM maps")
+            result = self.mycursor.fetchall()
+            for i in result:
+                maximum = int(i[0]) + 1
+                self.mycursor.execute(
+                    "ALTER TABLE maps AUTO_INCREMENT=" + str(maximum))
             self.mycursor.execute(
                 "INSERT INTO maps (name, imagepath) VALUES (%s, %s)", (name, imagepath)
             )
