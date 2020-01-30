@@ -1,3 +1,8 @@
+<?php
+  require_once('includes/database.inc.php');
+  $pdo = getConnectionInfo();
+  $maps = getAllMaps($pdo); 
+?>
 <!DOCTYPE HTML>
 
 <html>
@@ -27,22 +32,23 @@
 		<!-- Nav -->
 		
 		<nav id="menu">
-
-				
-				<ul class="links">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="#">Maps</a>
-						<ul>
-								<li><a href="maps.php">Mackenzie L4</a></li>
-								<li><a href="minto.html">Minto L7</a></li>
-								<li><a href="tunnels.html">Tunnels</a></li>
-
-						</ul>
-					</li>
-					<li><a href="background.html">Background</a></li>
-					<li><a href="applications.html">Applications</a></li>
-					<li><a href="about us.html">About Us</a></li>
-				</ul>
+			<ul class="links">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="#">Maps</a>
+					<ul>
+						<?php
+							$count = 0;
+							foreach ($maps as $map){
+								$count++;
+								echo("<li><a href='map.php?map=" . $count . "'>" . $map[0] . "</a></li>"); 
+							}
+						?>
+					</ul>
+				</li>
+				<li><a href="background.php">Background</a></li>
+				<li><a href="applications.php">Applications</a></li>
+				<li><a href="about us.php">About Us</a></li>
+			</ul>
 			</nav>
 
 		<!-- Main -->

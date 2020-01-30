@@ -33,9 +33,9 @@
 						?>
 					</ul>
 				</li>
-				<li><a href="background.html">Background</a></li>
-				<li><a href="applications.html">Applications</a></li>
-				<li><a href="about us.html">About Us</a></li>
+				<li><a href="background.php">Background</a></li>
+				<li><a href="applications.php">Applications</a></li>
+				<li><a href="about us.php">About Us</a></li>
 			</ul>
 		</nav>
 		<section id="banner">
