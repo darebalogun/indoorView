@@ -10,6 +10,8 @@ map_size = int(config['MAP']['MapSize']) / \
 os.system("gnome-terminal -x roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=hector map_size:=" +
           str(map_size) + " map_resolution:=" + config['MAP']['MapResolution'])
 os.system("gnome-terminal -x roslaunch teleop_twist_joy teleop.launch")
+# os.system(
+#   "gnome-terminal -x roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch")
 
 
 def get_map_size():

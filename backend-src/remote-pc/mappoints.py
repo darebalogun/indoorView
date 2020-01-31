@@ -83,6 +83,7 @@ class MapPoints:
 
         rospy.loginfo("Point : " + str(data.point.x) + ' ' + str(data.point.y))
 
+        '''
         # Interpolate between points of interest
         while True:
             # TODO get starting point of robot here instead of (0,0)
@@ -100,31 +101,38 @@ class MapPoints:
 
             midx, midy = splitpoints.get_split_point(a, b, self.photo_spacing)
 
-            if not (a[0] <= midx <= b[0] or b[0] <= midx <= a[0]):
-                position = {'x': data.point.x, 'y': data.point.y}
-                self.positions.append(position)
-                self.add_marker(position)
-                angle = -1 * \
-                    anglebtwnpoints.getangle(a, (position['x'], position['y']))
-                rotation = pyquaternion.Quaternion(
-                    axis=[0.0, 0.0, 1.0], radians=angle)
-                new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
-                            'z': rotation.elements[3], 'w': rotation.elements[0]}
-                print(angle)
-                self.orientations.append(new_pose)
-                break
+            if not (a[0] <= midx <= b[0] or b[0] <= midx <= a[0]):'''
 
-            position = {'x': midx, 'y': midy}
-            self.positions.append(position)
-            self.add_marker(position)
-            angle = -1 * \
-                anglebtwnpoints.getangle(a, (position['x'], position['y']))
-            rotation = pyquaternion.Quaternion(
-                axis=[0.0, 0.0, 1.0], radians=angle)
-            new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
-                        'z': rotation.elements[3], 'w': rotation.elements[0]}
-            print(angle)
-            self.orientations.append(new_pose)
+        if not self.positions:
+            a = (0, 0)
+        else:
+            a = (self.positions[-1]['x'], self.positions[-1]['y'])
+        position = {'x': data.point.x, 'y': data.point.y}
+        self.positions.append(position)
+        self.add_marker(position)
+        angle = -1 * \
+            anglebtwnpoints.getangle(a, (position['x'], position['y']))
+        rotation = pyquaternion.Quaternion(
+            axis=[0.0, 0.0, 1.0], radians=angle)
+        new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
+                    'z': rotation.elements[3], 'w': rotation.elements[0]}
+        print(angle)
+        self.orientations.append(new_pose)
+        '''
+            break
+
+        position = {'x': midx, 'y': midy}
+        self.positions.append(position)
+        self.add_marker(position)
+        angle = -1 * \
+            anglebtwnpoints.getangle(a, (position['x'], position['y']))
+        rotation = pyquaternion.Quaternion(
+            axis=[0.0, 0.0, 1.0], radians=angle)
+        new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
+                    'z': rotation.elements[3], 'w': rotation.elements[0]}
+        print(angle)
+        self.orientations.append(new_pose)
+        '''
 
     def listener(self):
         """

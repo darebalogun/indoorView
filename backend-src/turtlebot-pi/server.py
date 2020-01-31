@@ -1,14 +1,15 @@
 # !/usr/bin/env python2
 
 import random
-import socket, select
+import socket
+import select
 from time import gmtime, strftime
 
 
 def serv(current_image):
     #image = 'image1.jpg'
 
-    HOST = '172.17.7.6'
+    HOST = '172.17.29.22'
     PORT = 6666
     cnt = 0
     connected_clients_sockets = []
@@ -20,7 +21,6 @@ def serv(current_image):
     server_socket.listen(10)
 
     connected_clients_sockets.append(server_socket)
-    
 
     def recvall(sock, msgLen):
         msg = ""
@@ -30,19 +30,21 @@ def serv(current_image):
 
             chunk = sock.recv(msgLen - bytesRcvd)
 
-            if chunk == "": break
+            if chunk == "":
+                break
 
             bytesRcvd += len(chunk)
             msg += chunk
 
-            if "\r\n" in msg: break
+            if "\r\n" in msg:
+                break
         return msg
-
 
     while True:
         if cnt == 1:
             break
-        read_sockets, write_sockets, error_sockets = select.select(connected_clients_sockets, [], [])
+        read_sockets, write_sockets, error_sockets = select.select(
+            connected_clients_sockets, [], [])
 
         for sock in read_sockets:
 
@@ -90,4 +92,3 @@ def serv(current_image):
                     connected_clients_sockets.remove(sock)
                     continue
     server_socket.close()
-
