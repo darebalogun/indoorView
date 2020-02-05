@@ -94,7 +94,7 @@ Please enter a name for the map: [map_name]
 4. Remove file structure naming pertinent to my pc
 5. More user friendly CLI
 6. Update Readme with config file steps
-7. Update menu in html pages
+7. ~Update menu in html pages~
 8. ~Fix auto-increment ID bug in database~
 9. ~Reduce max velocity for stability~
 10. Fix map coordinates size and positions
