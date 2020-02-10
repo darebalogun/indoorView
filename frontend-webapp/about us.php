@@ -16,7 +16,7 @@
 
 			<style> 
 					body {
-						background-image:url(images/bluewhite.jpg)
+						background-image:url(images/back2.jpg)
 					}
 					
 			</style>
@@ -43,9 +43,9 @@
 						?>
 					</ul>
 				</li>
-				<li><a href="background.html">Background</a></li>
-				<li><a href="applications.html">Applications</a></li>
-				<li><a href="about us.html">About Us</a></li>
+				<li><a href="background.php">Background</a></li>
+				<li><a href="applications.php">Applications</a></li>
+				<li><a href="about us.php">About Us</a></li>
 			</ul>
 			</nav>
 
@@ -77,16 +77,16 @@
 								</div>
 								<div class="col align-center">
 									<div class="image round">
-										<img src="images/placeholder.jpg" alt="" />
+										<img src="images/zoya.png" alt="" />
 									</div>
-									<h4>Gregory Koloniaris </h4>
+									<h4>Zoya Mushtaq </h4>
 									<h6>insert text </h6>	
 								</div>
 								<div class="col align-center">
 									<div class="image round">
 										<img src="images/placeholder.jpg" alt="" />
 									</div>
-									<h4>Zoya Mushtaq </h4>
+									<h4>Gregory Koloniaris </h4>
 									<h6>insert text </h6>	
 								</div>
 

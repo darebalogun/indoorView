@@ -18,7 +18,7 @@
 
 			<style> 
 					body {
-						background-image:url(images/bluewhite.jpg)
+						background-image:url(images/back2.jpg)
 					}
 					
 			</style>
@@ -87,6 +87,7 @@
 									<div >
 										
 										<a href="" class="image main"><img src="images/realestate.JPG" alt="" /></a>
+										
 									</div>
 								</div>
 

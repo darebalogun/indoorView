@@ -110,6 +110,127 @@
   animation: fa-spin 2s infinite linear;
 }
 
+/* beginning of moodal css */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  padding-bottom: 5px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.bigbutton{
+  background-color: #191b77;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1;
+  color: #FFFFFF;
+  float: left;
+  padding: 15px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; 
+
+}
+
+/* Modal Content */
+.modal-content {
+  z-index: 1;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  height: 100%;
+}
+
+/* The Close Button */
+.modclose {
+  
+  color: #050505;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modclose:hover,
+.modclose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* end of modal css  */
+
+/* table css beginning  */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  width: 10%;
+
+}
+th{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  width: 90%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* table css end  */
+
+
+/* beginning of panormam css */
+#panorama {
+  width: 62%;
+  height: 450px;
+  image-orientation: right;
+
+}
+
+#controls {
+  position: absolute;
+  /* toggle on deciding between absolute and relative */
+  bottom: 0;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 10px;
+      }
+.ctrl {
+  padding: 8px 5px;
+  width: 40px;
+  z-index: 2;
+  text-align: center;
+  background: rgba(200, 200, 200, 0.8);
+  display: inline-block;
+  border: 3px solid #2D2868;
+  cursor: pointer;
+}
+.ctrl:hover {
+  background: rgba(200, 200, 200, 1);
+}
+
+
+/* end of panormam css */
+
 /* Beginning of Dares css  */
 body {
   margin: 0;
@@ -135,7 +256,8 @@ iframe {
   overflow: auto;
   position: relative;
   display: inline-block;
-  box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 10px;
   /*width: 33.15%;*/
   width: 33.15%;
 }
@@ -145,13 +267,20 @@ iframe {
   width: 100%;
   height: 100%;
   object-fit: fill;
+  margin-right: 10px;
+
 }
 
 .column.vrview {
   display: inline-block;
+  image-orientation: right;
   padding: 1px;
   width: 60%;
-  box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px  rgb(162, 184, 212);
+  margin-left: 10px;
+  margin-right: 5px;
+
+  
 }
 
 /* MOBILE */
@@ -164,16 +293,21 @@ iframe {
     overflow: auto;
     position: relative;
     display: inline-block;
-    box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
     /*width: 33.15%;*/
     width: 100%;
+    margin-right: 10px;
+    /* margin-left: 5px; */
+
   }
 
   .column.vrview {
     display: inline-block;
     padding: 1px;
     width: 100%;
-    box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+    margin-right: 5px;
   }
 }
 /* DESKTOP */
@@ -715,6 +849,8 @@ button.special:active,
 
 /* Flex - needed to keep images right */
 
+/* Flex - needed to keep images right */
+
 .flex {
   display: -ms-flexbox;
   -ms-flex-pack: justify;
@@ -810,7 +946,6 @@ button.special:active,
 }
 
 
-  
 
 
 
@@ -818,10 +953,36 @@ button.special:active,
 
 .image.right {
   max-width: 40%;
+  z-index: -1;
+  position: relative;
+
+
+ 
 }
 
 .image.right img {
+  position: relative;
   width: 100%;
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+  z-index: -1;
+
+}
+
+.image.left {
+  max-width: 30%;
+  z-index: -1;
+  position: relative;
+
+
+ 
+}
+
+.image.left img {
+  position: relative;
+  width: 80%;
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+  z-index: -1;
+
 }
 
 .image.round {
@@ -830,17 +991,22 @@ button.special:active,
 
 .image.round img {
   border-radius: 70%;
-  width: 300px;
-}
+   width: 300px;
+   box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+
+  /* height: 500px;  */
+} 
 
 .image.main {
-  display: block;
+  display: inline-block;
   margin: 0 0 3px 0;
   width: 100%;
+  /* box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .image.main img {
   width: 100%;
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
 }
 
 .image.right {
@@ -1246,7 +1412,7 @@ body.subpage {
 }
 /* the x in the menu  */
 #menu .close:before {
-  font-size: 1.4em;
+  font-size: 1.8em;
 }
 
 #menu .close:hover {

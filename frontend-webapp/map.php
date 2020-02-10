@@ -16,17 +16,17 @@
 		<title>Indoor View</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link
-			href="//fonts.googleapis.com/css?family=Lora|Open+Sans"
-			rel="stylesheet"
-			type="text/css"
-		/>
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+
 		<link rel="stylesheet" href="assets/css/main.css" type="text/css"/>
     	<script src="includes/jquery-3.4.1.min.js"></script>
     	<script src="includes/imageMapResizer.min.js"></script>
     	<script src="includes/jquery.maphilight.min.js"></script>
-    	<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
-	</head>
+        <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+        <link rel="stylesheet" href="https://cdn.pannellum.org/2.3/pannellum.css"/>
+		<script type="text/javascript" src="https://cdn.pannellum.org/2.3/pannellum.js"></script>
+    </head>
 	<body class="subpage">
 		<style> 
 			body {
@@ -65,10 +65,99 @@
 					</header>
 						<div class="align-left">
 							<h2>Explore and find your way around Carleton Univeristy.</h2>
-							<h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5>						
+							<h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5>	
+							<button id="myBtn" class="bigbutton" width="60" height="100">Controls Functionality</button>				
 						</div>
 				</div>
 			</section>
+
+
+
+			<!-- modal begin  -->
+
+			<!-- Trigger/Open The Modal -->
+					
+
+					<!-- The Modal -->
+				<div id="myModal" class="modal">
+
+					<!-- Modal content -->
+						<div class="modal-content">
+							<span class="modclose">&times;</span>
+							<h2>Controls Functionality</h2>
+
+							<table>
+									<tr>
+										<td>Symbol</td>
+										<th>Functionality</th>
+
+									</tr>
+									<tr>
+										<td><div class="ctrl">&#x25B2; </div></td>
+										<th><h5>Navigate forward to the next image in the map</h5></th>
+									</tr>
+									<tr>
+										<td><div class="ctrl">&#9660;</div></td>
+										<th><h5> Navigate backward to the previous image in the map</h5></th>
+									</tr>
+									<tr>
+										<td><div class="ctrl">&#x25C0;</div></td>
+										<th><h5> Navigate left in the image</h5></th>
+									</tr>
+									<tr>
+										<td><div class="ctrl" >&#9654;</div></td>
+										<th><h5>Navigate right in the image</h5></th>
+									</tr>
+									<tr>
+										<td><div class="ctrl" >&plus;</div></td>
+										<th><h5> Zoom in </h5></th>
+									</tr>
+									<tr>
+										<td><div class="ctrl" >&minus;</div></td>
+										<th><h5> Zoom out </h5></th>
+									</tr>
+									<tr>
+										<td><div class="ctrl">&#x2922;</div></td>
+										<th><h5> Enter full screen mode</h5></th>
+									</tr>
+							</table>
+
+						</div>
+
+				</div>
+
+				<script>
+						// Get the modal
+						var modal = document.getElementById("myModal");
+
+						// Get the button that opens the modal
+						var btn = document.getElementById("myBtn");
+
+						// Get the <span> element that closes the modal
+						var span = document.getElementsByClassName("modclose")[0];
+
+						// When the user clicks the button, open the modal 
+						btn.onclick = function() {
+						modal.style.display = "block";
+						}
+
+						// When the user clicks on <span> (x), close the modal
+						span.onclick = function() {
+						modal.style.display = "none";
+						}
+
+						// When the user clicks anywhere outside of the modal, close it
+						window.onclick = function(event) {
+						if (event.target == modal) {
+							modal.style.display = "none";
+						}
+						}
+				</script>
+
+
+			<!-- modal end -->
+
+
 			<div class="row">
 				<div class="column map" id="image_map">
     				<map name="coord_map">
@@ -87,31 +176,96 @@
 							echo('<img src="'. $imagepath .'" usemap="#coord_map"/>')	
 						?>
 				</div>
-				<div id="vrview" class="column vrview"></div>
+                <div id="panorama" class="column vrview"></div>
+                            <div id="panorama">
+								<div id="controls">
+									<div class="ctrl" id="pan-up">&#x25B2;</div>
+									<div class="ctrl" id="pan-down">&#9660;</div>
+									<div class="ctrl" id="pan-left">&#x25C0;</div>
+									<div class="ctrl" id="pan-right">&#9654;</div>
+									<div class="ctrl" id="zoom-in">&plus;</div>
+									<div class="ctrl" id="zoom-out">&minus;</div>
+									<div class="ctrl" id="fullscreen">&#x2922;</div>
+								</div>
+							</div>
+                        
 					<script>
-						window.addEventListener("load", function(){
-							onVrViewLoad(0);
-						});
+						var remember = 0;
+                        // Create viewer
+								viewer = pannellum.viewer('panorama', {
+									"type": "equirectangular",
+									"panorama": "images/" + "<?php echo $map_name ?>" + "/image1.jpg",
+									"autoLoad": true,
+									"showControls": false,
+									"sceneFadeDuration": 10000
+								});
+								// viewer.addScene( '2', "panorama" : "images/" + "<?php echo $map_name ?>" + "/image" + 2 + ".jpg", "autoLoad": false);
+						
+
+
 						var images = [];
 						var image_count = <?php echo $index + 1?>;
 						var i;
+						
 						for (i = 0; i < image_count; i++){
 							var j = i + 1;
 							images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg" );
+							// viewer.addScene( j.toString(), "panorama" : "images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg", "autoLoad": false);
 						}
+
 						function onVrViewLoad(index) {
-							var vrView = new VRView.Player("#vrview", {
-							image: images[index],
-							is_stereo: false,
-							width: "100%",
-							height: "100%"
-							});
-						}
+							viewer = pannellum.viewer('panorama', {
+													"type": "equirectangular",				
+													// images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg" );
+													"panorama":"images/" + "<?php echo $map_name ?>" + "/image" + (index + 1).toString() + ".jpg",
+													"autoLoad": true,
+													"showControls": false,
+													"sceneFadeDuration": 10000
+													});
+							remember = index;
+
+							}
+
 						function newVrView(index){
-							var vrview = document.getElementById("vrview");
+							var vrview = document.getElementById("panorama");
 							vrview.removeChild(vrview.childNodes[0]);
 							onVrViewLoad(index);
 						}
+
+
+	
+                        // Make buttons work
+							document.getElementById('pan-up').addEventListener('click', function(e) {
+								// viewer.setPitch(viewer.getPitch() + 10);
+								if(remember == (image_count -1)){
+									onVrViewLoad(0);
+								}else{
+									onVrViewLoad(remember + 1);
+								} 
+							});
+							document.getElementById('pan-down').addEventListener('click', function(e) {
+								//viewer.setPitch(viewer.getPitch() - 10);
+								if(remember == (0)){
+									onVrViewLoad(image_count - 1); 
+								}else{
+									onVrViewLoad(remember - 1);
+								}
+							});
+							document.getElementById('pan-left').addEventListener('click', function(e) {
+								viewer.setYaw(viewer.getYaw() - 10);
+							});
+							document.getElementById('pan-right').addEventListener('click', function(e) {
+								viewer.setYaw(viewer.getYaw() + 10);
+							});
+							document.getElementById('zoom-in').addEventListener('click', function(e) {
+								viewer.setHfov(viewer.getHfov() - 10);
+							});
+							document.getElementById('zoom-out').addEventListener('click', function(e) {
+								viewer.setHfov(viewer.getHfov() + 10);
+							});
+							document.getElementById('fullscreen').addEventListener('click', function(e) {
+								viewer.toggleFullscreen();
+							});
 					</script>
 			</div>
 			<script>
