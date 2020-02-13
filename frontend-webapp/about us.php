@@ -16,7 +16,7 @@
 
 			<style> 
 					body {
-						background-image:url(images/back2.jpg)
+						background-image:url(images/bluewhite.jpg)
 					}
 					
 			</style>

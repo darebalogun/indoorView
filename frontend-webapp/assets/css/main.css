@@ -149,7 +149,7 @@
   border: 1px solid #888;
   background-clip: padding-box;
   width: 50%;
-  height: 100%;
+  /* height: 100%; */
   
 }
 
@@ -211,7 +211,10 @@ tr:nth-child(even) {
 /* beginning of panormam css */
 #panorama {
   width: 62%;
-  height: 450px;
+  /* height: 450px; */
+  height: 700px;
+  /* height: 70%; */
+  /* height: default;  */
   image-orientation: right;
 
 }
@@ -301,6 +304,8 @@ iframe {
 @media screen and (max-width: 600px) {
   .column {
     margin: 0;
+    height: 100%;
+    width: 100%;
   }
 
   .column.map {
@@ -327,7 +332,8 @@ iframe {
 /* DESKTOP */
 @media screen and (min-width: 600px) {
   iframe {
-    height: 600px;
+    /* height: 600px; */
+    height: 100%;
     width: 100%;
     /* margin: 1rem auto; */
     display: block;
