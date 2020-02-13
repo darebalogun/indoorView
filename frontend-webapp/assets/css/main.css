@@ -328,6 +328,17 @@ iframe {
     margin-left: 10px;
     margin-right: 5px;
   }
+  #panorama {
+    width: 62%;
+    /* height: 450px; */
+    height: 700px;
+    /* height: 70%; */
+    /* height: default;  */
+    image-orientation: right;
+  
+  }
+
+
 }
 /* DESKTOP */
 @media screen and (min-width: 600px) {
