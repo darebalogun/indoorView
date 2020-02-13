@@ -34,7 +34,7 @@
 			}		
 		</style>
 		<header id="header">
-			<div class="logo"><a href="index.php">SYSC 4907</span></a></div>
+			<div class="logo"><a href="index.php">IndoorView</span></a></div>
 			<a href="#menu">Menu</a>
 		</header>
 		<nav id="menu">
@@ -220,7 +220,7 @@
 													"panorama":"images/" + "<?php echo $map_name ?>" + "/image" + (index + 1).toString() + ".jpg",
 													"autoLoad": true,
 													"showControls": false,
-													"sceneFadeDuration": 10000
+													"sceneFadeDuration": 10000 
 													});
 							remember = index;
 
@@ -273,6 +273,7 @@
 				$.fn.maphilight.defaults = {
 				fill: true,
 				fillColor: 'ff0000',
+				// fillColor:'006400',
 				fillOpacity: 0.1,
 				stroke: true,
 				strokeColor: 'ff0000',

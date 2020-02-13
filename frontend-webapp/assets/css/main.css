@@ -147,8 +147,16 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
+  background-clip: padding-box;
   width: 50%;
   height: 100%;
+  
+}
+
+.modal-content:target {
+  visibility: visible;
+  opacity: 2;
+  z-index: inherit;
 }
 
 /* The Close Button */
@@ -177,17 +185,20 @@ table {
 }
 
 td{
-  border: 1px solid #dddddd;
+  border: 1px solid #0e0d0d;
   text-align: left;
   padding: 8px;
   width: 10%;
+  color: rgb(134, 131, 131);
+
 
 }
 th{
-  border: 1px solid #dddddd;
+  border: 1px solid #070606;
   text-align: left;
   padding: 8px;
   width: 90%;
+  color: rgb(134, 131, 131);
 }
 
 tr:nth-child(even) {
@@ -213,6 +224,8 @@ tr:nth-child(even) {
   text-align: center;
   width: 100%;
   padding-bottom: 10px;
+  z-index: 0;
+
       }
 .ctrl {
   padding: 8px 5px;
@@ -265,8 +278,9 @@ iframe {
 .column.map img {
   position: relative;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: fill;
+  height: 100%;
   margin-right: 10px;
 
 }
@@ -493,22 +507,26 @@ h6 a,
 h7 a{
   color: inherit;
   text-decoration: none;
+
 }
 
 h1 {
   font-size: 3em;
   margin-bottom: 0.25em;
+
 }
 
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 2.5em;
+
   }
 }
 
 h2 {
   font-size: 1.7em;
   color: #060707;
+
 }
 h7 {
   font-size: 1.7em;
@@ -518,6 +536,7 @@ h7 {
 @media screen and (max-width: 600px) {
   h2 {
     font-size: 1em;
+
   }
 }
 
@@ -530,6 +549,7 @@ h7 {
 @media screen and (max-width: 480px) {
   h2 {
     font-size: 1em;
+
   }
 }
 
@@ -564,11 +584,13 @@ h4 {
 
 h5 {
   font-size: 1.5em;
+
 }
 
 @media screen and (max-width: 600px) {
   h5 {
     font-size: 1em;
+
   }
 }
 
@@ -633,10 +655,12 @@ b {
 
 h1 {
   color: rgb(23, 16, 49);
+
 }
 
 h2 {
   color: rgb(10, 0, 0);
+
 }
 
 h3 {
@@ -649,6 +673,7 @@ h4 {
 
 h5 {
   color: rgb(10, 0, 0);
+
 }
 
 h6 {
@@ -656,6 +681,7 @@ h6 {
 }
 h2 {
   color: rgb(12, 9, 9);
+
 }
 
 blockquote {
@@ -1081,6 +1107,8 @@ ul li {
 .wrapper {
   padding: 1.5em 0 1.5em 0;
   position: relative;
+  z-index: 0;
+
 }
 
 .wrapper .inner {
@@ -1088,12 +1116,15 @@ ul li {
   margin: 0 auto;
   width: 80%;
   position: relative;
-  z-index: 99;
+  z-index: 0;
+
 }
 
 @media screen and (max-width: 736px) {
   .wrapper header {
     margin-bottom: 2em;
+    z-index: 0;
+
   }
 }
 
@@ -1284,6 +1315,7 @@ body.subpage {
 
 #header.alt h1 {
   left: 2.5em;
+
 }
 
 #header.alt nav {
@@ -1302,10 +1334,12 @@ body.subpage {
 
   #header > h1 {
     left: 1em;
+
   }
 
   #header > h1 a {
     font-size: 1em;
+
   }
 }
 
@@ -1490,6 +1524,7 @@ body.subpage {
   font-size: 4em;
   margin-bottom: 0.25em;
   color: #fff;
+
 }
 
 #banner p {
@@ -1582,6 +1617,7 @@ body.subpage {
     font-size: 1.75em;
     margin-bottom: 0.5em;
     padding-bottom: 0;
+
   }
 
   #banner p {

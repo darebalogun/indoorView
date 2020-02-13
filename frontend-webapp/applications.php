@@ -26,7 +26,7 @@
 
 		<!-- Header -->
 			<header id="header">
-					<div class="logo"><a href="index.php">SYSC 4907</span></a></div>
+					<div class="logo"><a href="index.php">IndoorView</span></a></div>
 				<a href="#menu">Menu</a>
 			</header>
 

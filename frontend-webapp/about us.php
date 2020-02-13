@@ -23,7 +23,7 @@
 
 		<!-- Header -->
 			<header id="header">
-				<div class="logo"><a href="index.php">SYSC 4907</a></div>
+				<div class="logo"><a href="index.php">IndoorView</a></div>
 				<a href="#menu">Menu</a>
 			</header>
 
