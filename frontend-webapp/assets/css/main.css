@@ -220,9 +220,10 @@ tr:nth-child(even) {
 }
 
 #controls {
-  position: absolute;
+  position: fixed;
   /* toggle on deciding between absolute and relative */
   bottom: 0;
+  right:2;
   z-index: 2;
   text-align: center;
   width: 100%;
@@ -330,7 +331,8 @@ iframe {
     margin-right: 5px;
   }
   #panorama {
-    width: 62%;
+      width: 100%;
+     /* width: 62%;  */
     /* height: 450px; */
     height: 700px;
     /* height: 70%; */
