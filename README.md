@@ -11,6 +11,9 @@ Anannya Bhatia
 ### Supervising Professor
 Dr. Mohamed Atia
 
+### Deployment
+This project is currently deployed on https://cu-indoorview.herokuapp.com/
+
 ## Getting Started
 The following instructions will show you how to get the system running and how to capture a map and host on the web
 
