@@ -2,7 +2,7 @@ import netifaces as ni
 import ipaddress
 import os
 
-#Get pc ip
+# Get pc ip
 pc_IP = ni.ifaddresses('wlp2s0')[ni.AF_INET][0]['addr']
 print("PC IP address: " + pc_IP)
 
@@ -16,3 +16,7 @@ lines[127] = "export ROS_HOSTNAME=" + pc_IP + "\n"
 
 with open(bashrc_path, 'w') as file:
     file.writelines(lines)
+
+os.system(". " + bashrc_path)
+
+os.system("gnome-terminal --command='roscore'")

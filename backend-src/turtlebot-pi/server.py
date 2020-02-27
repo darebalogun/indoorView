@@ -9,7 +9,7 @@ from time import gmtime, strftime
 def serv(current_image):
     #image = 'image1.jpg'
 
-    HOST = '172.17.29.22'
+    HOST = '172.17.130.62'
     PORT = 6666
     cnt = 0
     connected_clients_sockets = []

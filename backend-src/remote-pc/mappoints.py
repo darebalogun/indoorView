@@ -262,8 +262,10 @@ class MapPoints:
 
 
 if __name__ == '__main__':
-    os.system(
-        "gnome-terminal -x rostopic pub /reset std_msgs/Empty \"{}\" >/dev/null 2>&1")
+    # os.system(
+     #   "gnome-terminal --command='sh -c \"rostopic pub /reset std_msgs/Empty \"{}\"; PID=$!; sleep 1; kill $PID\"'")
+    cmd = subprocess.Popen(
+        ["rostopic pub /reset std_msgs/Empty \"{}\""], shell=True, stdout=subprocess.PIPE)
     mapname = raw_input("Please enter a name for the map: ")
     rospy.init_node('listener', anonymous=True)
     mappoints = MapPoints(mapname)
