@@ -1,36 +1,59 @@
 import cv2 as cv
 import numpy as np
+import imutils
 from matplotlib import pyplot as plt
 
-img = cv.imread('../../frontend-webapp/maps/LocalizationTestMap.png', 0)
-img2 = img.copy()
-template = cv.imread(
-    '../../frontend-webapp/maps/LocalizationStraightEdited.png', 0)
-w, h = template.shape[::-1]
-
-methods = ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR',
-           'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
+method = 'cv.TM_CCOEFF_NORMED'
 
 
-for meth in methods:
-    img = img2.copy()
-    method = eval(meth)
-    # Apply template Matching
-    res = cv.matchTemplate(img, template, method)
-    min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+def localize(map_path, template_path):
 
-    print(meth + ": " + str(max_val))
-    print("At loc: " + str(max_loc))
-    # If the method is TM_SQDIFF or TM_SQDIFF_NORMED, take minimum
-    if method in [cv.TM_SQDIFF, cv.TM_SQDIFF_NORMED]:
-        top_left = min_loc
-    else:
-        top_left = max_loc
-    bottom_right = (top_left[0] + w, top_left[1] + h)
-    cv.rectangle(img, top_left, bottom_right, 255, 2)
-    plt.subplot(121), plt.imshow(res, cmap='gray')
-    plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
-    plt.subplot(122), plt.imshow(img, cmap='gray')
-    plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
-    plt.suptitle(meth)
-    plt.show()
+    img = cv.imread(map_path, 0)
+    img2 = img.copy()
+    template = cv.imread(template_path, 0)
+    w, h = template.shape[::-1]
+
+    rot_angle = 0
+    max_score = 0
+    max_score_loc = (0, 0)
+
+    for angle in np.arange(0, 360, 1):
+        rotated_template = imutils.rotate(template, angle)
+
+        # Crop photo to 1/3 original size
+        cropped_template = rotated_template[(h/3):(2*h/3), (w/3):(2*w/3)]
+        w1, h1 = cropped_template.shape[::-1]
+
+        # Perform matching
+        res = cv.matchTemplate(img, cropped_template, eval(method))
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+
+        # If this the best score update
+        if max_val > max_score:
+            max_score = max_val
+            max_score_loc = max_loc
+            rot_angle = angle
+            img2 = cropped_template
+
+    return max_score, max_score_loc, rot_angle
+
+    # cv.imshow("rotated", img2)
+    # cv.waitKey(5000)
+    # print(method + ": " + str(max_score))
+    # print("At loc: " + str(max_score_loc))
+    # print("Angle: " + str(rot_angle))
+    # top_left = max_score_loc
+    # bottom_right = (top_left[0] + w1, top_left[1] + h1)
+    # cv.rectangle(img, top_left, bottom_right, 255, 2)
+    # plt.subplot(121), plt.imshow(res, cmap='gray')
+    # plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
+    # plt.subplot(122), plt.imshow(img, cmap='gray')
+    # plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
+    # plt.suptitle(method)
+    # plt.show()
+
+
+if __name__ == "__main__":
+    map_path = '../../frontend-webapp/maps/LocalizationTestMap.pgm'
+    template_path = '../../frontend-webapp/maps/LocalizationTemplate.pgm'
+    max_score, max_score_loc, rot_angle = localize(map_path, template_path)

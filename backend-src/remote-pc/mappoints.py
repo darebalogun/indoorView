@@ -9,6 +9,7 @@ import h_udp_client
 import subprocess
 import anglebtwnpoints
 import pyquaternion
+import localization
 from time import time
 from PIL import Image
 from savetodatabase import Database
