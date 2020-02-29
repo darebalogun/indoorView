@@ -10,12 +10,13 @@ import subprocess
 import anglebtwnpoints
 import pyquaternion
 import localization
-from time import time
+import time
+import math
 from PIL import Image
 from savetodatabase import Database
 from nav_msgs.msg import Odometry
 from std_msgs.msg import Empty
-from geometry_msgs.msg import Pose, Point, Quaternion, PointStamped
+from geometry_msgs.msg import Pose, Point, Quaternion, PointStamped, PoseWithCovarianceStamped
 from visualization_msgs.msg import Marker, MarkerArray
 from go_to_specific_point_on_map import GoToPose
 from threading import Thread
@@ -64,6 +65,12 @@ class MapPoints:
 
         # Between points on map to take photo in meters
         self.photo_spacing = StartRVIZ.get_photo_spacing()
+
+        # Save locatio for map
+        self.map_path = "/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name
+
+        self.template_path = "/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/templates/" + \
+            self.name + "_template"
 
     def get_location(self, data):
         self.x = data.pose.pose.position.x
@@ -160,7 +167,7 @@ class MapPoints:
 
         rospy.loginfo("Saving Map...")
         os.system(
-            "gnome-terminal -x rosrun map_server map_saver -f /home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name)
+            "gnome-terminal -x rosrun map_server map_saver -f " + self.map_path)
         rospy.sleep(3)
 
         # Save all points to db
@@ -171,10 +178,59 @@ class MapPoints:
                    ".pgm").save("../../frontend-webapp/maps/" + self.name + ".png")
         self.database.add_map(self.name, "maps/" + self.name + ".png")
 
+        rospy.loginfo("Map Creation phase complete!")
+
+        rospy.loginfo("Press enter when ready to start Image Capture phase: ")
+
+        raw_input()
+
+        # Get template
+        self.get_template()
+
+        rospy.loginfo("Performing localization...")
+
+        rospy.sleep(5)
+
+        max_score, max_score_loc, rot_angle = localization.localize(
+            self.map_path + ".pgm", self.template_path + ".pgm")
+
+        rospy.loginfo("max_score: " + str(max_score))
+        rospy.loginfo("location: " + str(max_score_loc))
+        rospy.loginfo("angle: " + str(rot_angle))
+
+        angle_rad = rot_angle * math.pi / 180
+
+        rotation = pyquaternion.Quaternion(
+            axis=[0.0, 0.0, 1.0], radians=angle_rad)
+
+        quat = Quaternion(rotation[1], rotation[2], rotation[3], rotation[0])
+
         # Launch self navigation node
         os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name + ".yaml")
-        rospy.loginfo("Estimate Initial Pose! Press Enter When Done")
+        rospy.loginfo("Estimating Initial Pose...")
         rospy.sleep(3)
+
+        # Publish location from localization back to rviz /initialpose
+        pose_publisher = rospy.Publisher(
+            "/initialpose", PoseWithCovarianceStamped, queue_size=10)
+        poseWCS = PoseWithCovarianceStamped()
+        poseWCS.header.frame_id = "map"
+        poseWCS.header.stamp = rospy.Time.now()
+        poseWCS.pose.pose.position.x = (
+            max_score_loc[0] - self.map_size/2) * self.map_resolution
+        poseWCS.pose.pose.position.y = -1 * \
+            (max_score_loc[1] - self.map_size/2) * self.map_resolution
+        poseWCS.pose.pose.position.z = 0
+        poseWCS.pose.pose.orientation = quat
+        poseWCS.pose.covariance = [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                   0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.06853891945200942]
+
+        rate = rospy.Rate(1)
+        pose_publisher.publish(poseWCS)
+        rate.sleep()
+        pose_publisher.publish(poseWCS)
+        rate.sleep()
+        pose_publisher.publish(poseWCS)
 
         # Publish markers on navigation node map
         self.add_marker_array()
@@ -261,10 +317,26 @@ class MapPoints:
         for index, position in enumerate(self.positions):
             self.save_point(position, index)
 
+        rospy.loginfo("Points saved to database!")
+
+    def get_template(self):
+        """
+        Get image of immediate surroundings
+        """
+        rospy.loginfo("Getting template...")
+        StartRVIZ.start_rviz()
+
+        time.sleep(8)
+
+        rospy.loginfo("Saving Template...")
+        os.system(
+            "gnome-terminal -x rosrun map_server map_saver -f " + self.template_path)
+
 
 if __name__ == '__main__':
+    StartRVIZ.start_rviz()
     # os.system(
-     #   "gnome-terminal --command='sh -c \"rostopic pub /reset std_msgs/Empty \"{}\"; PID=$!; sleep 1; kill $PID\"'")
+    #   "gnome-terminal --command='sh -c \"rostopic pub /reset std_msgs/Empty \"{}\"; PID=$!; sleep 1; kill $PID\"'")
     cmd = subprocess.Popen(
         ["rostopic pub /reset std_msgs/Empty \"{}\""], shell=True, stdout=subprocess.PIPE)
     mapname = raw_input("Please enter a name for the map: ")

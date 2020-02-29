@@ -16,6 +16,8 @@ def localize(map_path, template_path):
     rot_angle = 0
     max_score = 0
     max_score_loc = (0, 0)
+    template_w = 0
+    template_h = 0
 
     for angle in np.arange(0, 360, 1):
         rotated_template = imutils.rotate(template, angle)
@@ -34,8 +36,8 @@ def localize(map_path, template_path):
             max_score_loc = max_loc
             rot_angle = angle
             img2 = cropped_template
-
-    return max_score, max_score_loc, rot_angle
+            template_w = w1
+            template_h = h1
 
     # cv.imshow("rotated", img2)
     # cv.waitKey(5000)
@@ -52,8 +54,13 @@ def localize(map_path, template_path):
     # plt.suptitle(method)
     # plt.show()
 
+    max_score_loc = (max_score_loc[0] + template_w/2,
+                     max_score_loc[1] + template_h/2)
+
+    return max_score, max_score_loc, rot_angle
+
 
 if __name__ == "__main__":
-    map_path = '../../frontend-webapp/maps/LocalizationTestMap.pgm'
-    template_path = '../../frontend-webapp/maps/LocalizationTemplate.pgm'
+    map_path = '../../frontend-webapp/maps/localization.pgm'
+    template_path = '../../frontend-webapp/templates/localization_template.pgm'
     max_score, max_score_loc, rot_angle = localize(map_path, template_path)
