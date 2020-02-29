@@ -185,7 +185,7 @@ class MapPoints:
         raw_input()
 
         # Get template
-        self.get_template()
+        template_process = self.get_template()
 
         rospy.loginfo("Performing localization...")
 
@@ -204,6 +204,8 @@ class MapPoints:
             axis=[0.0, 0.0, 1.0], radians=angle_rad)
 
         quat = Quaternion(rotation[1], rotation[2], rotation[3], rotation[0])
+
+        template_process.kill()
 
         # Launch self navigation node
         os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name + ".yaml")
@@ -329,8 +331,10 @@ class MapPoints:
         time.sleep(8)
 
         rospy.loginfo("Saving Template...")
-        os.system(
-            "gnome-terminal -x rosrun map_server map_saver -f " + self.template_path)
+        # os.system(
+        #     "gnome-terminal -x rosrun map_server map_saver -f " + self.template_path)
+
+        return subprocess.Popen(["rosrun", "map_server", "map_saver -f " + self.template_path])
 
 
 if __name__ == '__main__':
