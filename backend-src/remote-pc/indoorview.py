@@ -11,6 +11,12 @@ class IndoorViewShell(cmd.Cmd):
     prompt = "(indoorView) "
     file = NotImplemented
 
+    def __init__(self):
+        self.map_created = False
+        self.map_saved = False
+        self.localization_performed = False
+        cmd.Cmd.__init__(self)
+
     def do_create_map(self, arg):
         "Map an area for indoorView with map name as argument"
         StartRVIZ.start_rviz()
@@ -18,6 +24,8 @@ class IndoorViewShell(cmd.Cmd):
             ["rostopic pub /reset std_msgs/Empty \"{}\""], shell=True, stdout=subprocess.PIPE)
         rospy.init_node('listener', anonymous=True)
         self.mappoints = MapPoints(arg)
+        rospy.loginfo("Please click points of interest on map in order!")
+        rospy.loginfo("Run save_map when done")
         listen = Thread(target=self.mappoints.listener, args=())
         listen.daemon = True
         listen.start()
@@ -28,8 +36,27 @@ class IndoorViewShell(cmd.Cmd):
         "Save map to maps folder with map name specified when creating map.\nMust be called after create_map"
         if self.map_created:
             self.mappoints.check_for_done()
+            self.map_saved = True
         else:
-            rospy.logerr("Please run create_map <map name> first")
+            print("Please run create_map <map name> first")
+
+    def do_perform_localization(self, arg):
+        "Localize TurtleBot in the previously saved map.\n Must be called after save_map"
+        if self.map_saved:
+            self.mappoints.perform_localization()
+            self.localization_performed = True
+        else:
+            print("Please run save_map first")
+
+    def do_perform_navigation(self, arg):
+        "Autonomously capture images at saved points in order"
+        if self.localization_performed:
+            self.mappoints.perform_navigation()
+        else:
+            print("Please run perform_localization first")
+
+    def do_shut_down(self, arg):
+        pass
 
 
 def parse(arg):

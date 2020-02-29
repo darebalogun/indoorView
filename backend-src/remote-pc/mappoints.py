@@ -146,9 +146,6 @@ class MapPoints:
         """
         Start listening for published points on the map
         """
-        rospy.loginfo(
-            "Please click points of interest on map in order!")
-        rospy.loginfo("Run save_map when done")
 
         # Create separate thread to listen for done
         # check_done = Thread(target=self.check_for_done, args=())
@@ -180,9 +177,7 @@ class MapPoints:
 
         rospy.loginfo("Map Creation phase complete!")
 
-        rospy.loginfo("Press enter when ready to start Image Capture phase: ")
-
-        raw_input()
+    def perform_localization(self):
 
         # Get template
         template_process = self.get_template()
@@ -236,10 +231,6 @@ class MapPoints:
 
         # Publish markers on navigation node map
         self.add_marker_array()
-
-        # Wait for user to press enter when done then navigate
-        raw_input()
-        self.perform_navigation()
 
     def perform_navigation(self):
         """
