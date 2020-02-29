@@ -89,7 +89,7 @@ class MapPoints:
             Information on which publish triggered the callback. In this case the data on the clicked point
         """
 
-        rospy.loginfo("Point : " + str(data.point.x) + ' ' + str(data.point.y))
+        #rospy.loginfo("Point : " + str(data.point.x) + ' ' + str(data.point.y))
 
         '''
         # Interpolate between points of interest
@@ -124,7 +124,7 @@ class MapPoints:
             axis=[0.0, 0.0, 1.0], radians=angle)
         new_pose = {'x': rotation.elements[1], 'y': rotation.elements[2],
                     'z': rotation.elements[3], 'w': rotation.elements[0]}
-        print(angle)
+        # print(angle)
         self.orientations.append(new_pose)
         '''
             break
@@ -147,12 +147,13 @@ class MapPoints:
         Start listening for published points on the map
         """
         rospy.loginfo(
-            "Please click points of interest on map in order! Press Enter when done!")
+            "Please click points of interest on map in order!")
+        rospy.loginfo("Run save_map when done")
 
         # Create separate thread to listen for done
-        check_done = Thread(target=self.check_for_done, args=())
-        check_done.daemon = True
-        check_done.start()
+        # check_done = Thread(target=self.check_for_done, args=())
+        # check_done.daemon = True
+        # check_done.start()
 
         # Subscribe to the /clicked_point topic
         rospy.Subscriber("/clicked_point", PointStamped, self.callback)
@@ -163,7 +164,6 @@ class MapPoints:
         """
         Wait for the user to press enter to indicate done then process map and save info in database
         """
-        raw_input()
 
         rospy.loginfo("Saving Map...")
         os.system(

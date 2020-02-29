@@ -21,10 +21,15 @@ class IndoorViewShell(cmd.Cmd):
         listen = Thread(target=self.mappoints.listener, args=())
         listen.daemon = True
         listen.start()
+        self.map_created = True
+        return
 
     def do_save_map(self, arg):
         "Save map to maps folder with map name specified when creating map.\nMust be called after create_map"
-        self.mappoints.check_for_done()
+        if self.map_created:
+            self.mappoints.check_for_done()
+        else:
+            rospy.logerr("Please run create_map <map name> first")
 
 
 def parse(arg):

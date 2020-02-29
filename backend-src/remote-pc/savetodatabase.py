@@ -1,4 +1,5 @@
 import mysql.connector
+import rospy
 
 
 class Database:
@@ -21,7 +22,7 @@ class Database:
             self.mycursor = self.mydb.cursor()
             self.mycursor.execute("CREATE DATABASE IF NOT EXISTS indoorview")
         except Exception as e:
-            print(e)
+            rospy.logerr(e)
 
     def create_table(self, table_name):
         """
@@ -43,9 +44,9 @@ class Database:
             self.mycursor.execute("DROP TABLE IF EXISTS " + table_name)
             self.mycursor.execute("CREATE TABLE " + table_name +
                                   " (id INT AUTO_INCREMENT PRIMARY KEY, coordx FLOAT(24), coordy FLOAT(24), image_path VARCHAR(255), mappedx FLOAT(24), mappedy FLOAT(24))")
-            print("Table created successfully!")
+            rospy.loginfo("Table created successfully")
         except Exception as e:
-            print(e)
+            rospy.logerr(e)
 
     def add_map(self, name, imagepath):
         """
@@ -70,7 +71,7 @@ class Database:
             )
             self.mydb.commit()
         except Exception as e:
-            print(e)
+            rospy.logerr(e)
 
     def add_coordinate(self, table_name, coordx, coordy, image_path, mappedx, mappedy):
         """
@@ -94,4 +95,4 @@ class Database:
                     coordx, coordy, image_path, mappedx, mappedy))
             self.mydb.commit()
         except Exception as e:
-            print(e)
+            rospy.logerr(e)
