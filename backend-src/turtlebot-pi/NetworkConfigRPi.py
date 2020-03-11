@@ -6,7 +6,7 @@ import os
 rpi_IP = ni.ifaddresses('wlan0')[ni.AF_INET][0]['addr']
 
 # Static IP of remote PC
-pc_IP = '172.17.29.75'
+pc_IP = '172.17.130.62'
 
 print("IP address of RPi: " + rpi_IP)
 
