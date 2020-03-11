@@ -167,14 +167,16 @@
 										href='javascript:newVrView(" . $index . ");'
 										target='_self'
 										shape='circle'
-										coords='" . $coord[0] . "," . $coord[1] . ",12'	
+										coords='" . $coord[0] . "," . $coord[1] . ",12'	 
 										/>");
 								}
+								// added an area to each prt of the imge map so that when a user clicks on it a new vrview is created
 						?>
 					</map>
 						<?php
 							echo('<img src="'. $imagepath .'" usemap="#coord_map"/>')	
 						?>
+
 				</div>
                 <div id="panorama" class="column vrview"></div>
                             <div id="panorama">
@@ -199,10 +201,9 @@
 									"showControls": false,
 									"sceneFadeDuration": 10000
 								});
-								// viewer.addScene( '2', "panorama" : "images/" + "<?php echo $map_name ?>" + "/image" + 2 + ".jpg", "autoLoad": false);
+
+
 						
-
-
 						var images = [];
 						var image_count = <?php echo $index + 1?>;
 						var i;
@@ -210,13 +211,11 @@
 						for (i = 0; i < image_count; i++){
 							var j = i + 1;
 							images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg" );
-							// viewer.addScene( j.toString(), "panorama" : "images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg", "autoLoad": false);
 						}
 
 						function onVrViewLoad(index) {
 							viewer = pannellum.viewer('panorama', {
 													"type": "equirectangular",				
-													// images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg" );
 													"panorama":"images/" + "<?php echo $map_name ?>" + "/image" + (index + 1).toString() + ".jpg",
 													"autoLoad": true,
 													"showControls": false,

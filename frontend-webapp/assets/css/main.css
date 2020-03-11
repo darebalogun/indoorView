@@ -346,10 +346,10 @@ iframe {
 /* DESKTOP */
 @media screen and (min-width: 600px) {
   iframe {
-    /* height: 600px; */
+     height: 600px; 
     height: 100%;
     width: 100%;
-    /* margin: 1rem auto; */
+     margin: 1rem auto; 
     display: block;
   }
 }
