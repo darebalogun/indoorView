@@ -66,9 +66,9 @@
 						<!-- Content -->
 						
 						<div align="center"> 
-						<iframe  src="https://www.youtube.com/embed/veSYU6K2EIE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<div class="video-container"><iframe  width="853" height="480" src="https://www.youtube.com/embed/veSYU6K2EIE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 						</div>
-											
+								
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
