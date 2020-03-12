@@ -20,7 +20,8 @@ class Database:
                 passwd=self.password
             )
             self.mycursor = self.mydb.cursor()
-            self.mycursor.execute("CREATE DATABASE IF NOT EXISTS indoorview")
+            self.mycursor.execute("CREATE DATABASE IF NOT EXISTS sql9317665")
+            self.mycursor.execute("USE sql9317665")
         except Exception as e:
             rospy.logerr(e)
 
@@ -93,6 +94,23 @@ class Database:
                 "INSERT INTO " + table_name +
                 " (coordx, coordy, image_path, mappedx, mappedy) VALUES (%s, %s, %s, %s, %s)", (
                     coordx, coordy, image_path, mappedx, mappedy))
+            self.mydb.commit()
+        except Exception as e:
+            rospy.logerr(e)
+
+    def get_maps(self):
+        try:
+            self.mycursor.execute("SELECT id, name FROM maps ORDER BY id")
+            rows = self.mycursor.fetchall()
+            return rows
+
+        except Exception as e:
+            rospy.logerr(e)
+
+    def delete_map(self, map):
+        try:
+            self.mycursor.execute("DROP TABLE IF EXISTS " + map)
+            self.mycursor.execute("DELETE FROM maps WHERE name=" + map)
             self.mydb.commit()
         except Exception as e:
             rospy.logerr(e)

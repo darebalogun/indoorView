@@ -5,7 +5,7 @@ import rospy
 import StartRVIZ
 import splitpoints
 import showmap
-import h_udp_client
+import message_client
 import subprocess
 import anglebtwnpoints
 import pyquaternion
@@ -180,7 +180,7 @@ class MapPoints:
     def perform_localization(self):
 
         # Get template
-        template_process = self.get_template()
+        self.get_template()
 
         rospy.loginfo("Performing localization...")
 
@@ -199,8 +199,6 @@ class MapPoints:
             axis=[0.0, 0.0, 1.0], radians=angle_rad)
 
         quat = Quaternion(rotation[1], rotation[2], rotation[3], rotation[0])
-
-        template_process.kill()
 
         # Launch self navigation node
         os.system("gnome-terminal -x roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/darebalogun/Desktop/Turtlebot/turtlebot/frontend-webapp/maps/" + self.name + ".yaml")
@@ -246,13 +244,13 @@ class MapPoints:
                 rospy.loginfo("The base failed to reach the desired pose")
 
             # TODO Add image capture, processing and storage code here
-            h_udp_client.hUDPClient("capture", self.name)
+            message_client.send("capture", self.name)
             # rospy.sleep(1)
 
             x = x + 1
 
         # TODO Add code to rename and transfer data
-        h_udp_client.hUDPClient("save_all_images", self.name)
+        message_client.send("save_all_images", self.name)
 
     def add_marker(self, position):
         """
@@ -322,10 +320,8 @@ class MapPoints:
         time.sleep(8)
 
         rospy.loginfo("Saving Template...")
-        # os.system(
-        #     "gnome-terminal -x rosrun map_server map_saver -f " + self.template_path)
-
-        return subprocess.Popen(["rosrun", "map_server", "map_saver -f " + self.template_path])
+        os.system(
+            "gnome-terminal -x rosrun map_server map_saver -f " + self.template_path)
 
 
 if __name__ == '__main__':

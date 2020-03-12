@@ -4,6 +4,7 @@ import StartRVIZ
 import subprocess
 import rospy
 from threading import Thread
+from savetodatabase import Database
 
 
 class IndoorViewShell(cmd.Cmd):
@@ -15,6 +16,7 @@ class IndoorViewShell(cmd.Cmd):
         self.map_created = False
         self.map_saved = False
         self.localization_performed = False
+        self.database = Database()
         cmd.Cmd.__init__(self)
 
     def do_create_map(self, arg):
@@ -55,8 +57,19 @@ class IndoorViewShell(cmd.Cmd):
         else:
             print("Please run perform_localization first")
 
+    def do_get_maps(self, arg):
+        "Get list of maps saved on the database"
+        maps = self.database.get_maps()
+        for map in maps:
+            print(str(map[0]) + " " + str(map[1]))
+
+    def do_delete_map(self, arg):
+        "Delete map from database"
+        self.database.delete_map(arg)
+
     def do_shut_down(self, arg):
-        pass
+        "Shut down system"
+        exit()
 
 
 def parse(arg):
