@@ -1,4 +1,5 @@
 import cmd
+import os
 from mappoints import MapPoints
 import StartRVIZ
 import subprocess
@@ -69,6 +70,7 @@ class IndoorViewShell(cmd.Cmd):
 
     def do_shut_down(self, arg):
         "Shut down system"
+        os.system("gnome-terminal -x rosnode kill -a")
         exit()
 
 
