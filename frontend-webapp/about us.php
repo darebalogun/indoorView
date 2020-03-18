@@ -70,32 +70,32 @@
 							<div class="flex flex-3">
 								<div class="col align-center">
 									<div class="image round">
-										<img src="images/placeholder.jpg" alt="" />
+										<img src="images/emad.png" alt="" />
 									</div>
-									<h4>Dare Balogun </h4>
-									<h6>insert text </h6>						
+									<h4>Emad Arid </h4>
+									<h6>Emad Arid is an Electrical Engineering student and worked on the development of the image capturing system.</h6>						
 								</div>
 								<div class="col align-center">
 									<div class="image round">
 										<img src="images/zoya.png" alt="" />
 									</div>
 									<h4>Zoya Mushtaq </h4>
-									<h6>insert text </h6>	
+									<h6>Zoya Mushtaq is a Computer Systems Engineering student and worked on the design and development of the Graphical User Interface (Web Applicaiton). </h6>	
 								</div>
 								<div class="col align-center">
 									<div class="image round">
-										<img src="images/placeholder.jpg" alt="" />
+										<img src="images/greg.png" alt="" />
 									</div>
 									<h4>Gregory Koloniaris </h4>
-									<h6>insert text </h6>	
+									<h6>Gregory Koloniaris is an Electrical Engineering student and worked on the development of the wireless image capturing control and image transfer system. </h6>	
 								</div>
 
 								<div class="col align-center">
 									<div class="image round">
-										<img src="images/placeholder.jpg" alt="" />
+										<img src="images/dare.jpg" alt="" />
 									</div>
-									<h4>Emad Arid </h4>
-									<h6>insert text </h6>	
+									<h4>Dare Balogun </h4>
+									<h6>Dare Balogun is a Computer Systems Engineering student and worked on the data collection process and indoor localization algorithm.</h6>	
 								</div>
 
 								<div class="col align-center">
@@ -103,7 +103,7 @@
 										<img src="images/placeholder.jpg" alt="" />
 									</div>
 									<h4>Anannya Bhatia </h4>
-									<h6>insert text </h6>						
+									<h6>Anannya Bhatia is a Computer Systems Engineering student and worked on the image filtering algorithm. </h6>						
 								</div>
 
 								<div class="col align-center">

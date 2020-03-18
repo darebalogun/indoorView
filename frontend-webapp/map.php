@@ -170,7 +170,6 @@
 										coords='" . $coord[0] . "," . $coord[1] . ",12'	 
 										/>");
 								}
-								// added an area to each prt of the imge map so that when a user clicks on it a new vrview is created
 						?>
 					</map>
 						<?php
