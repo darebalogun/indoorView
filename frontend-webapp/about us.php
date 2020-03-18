@@ -110,7 +110,7 @@
 									<div class="image round">
 										<img src="images/placeholder.jpg" alt="" />
 									</div>
-									<h4>Dr. Mohaamed Atia </h4>
+									<h4>Dr. Mohamed Atia </h4>
 									<h6>Dr. Mohamed Atia is the project supervisor and a professor at Carleton University. He oversaw the progress and development of the project and advised on project decisions.  </h6>						
 								</div>
 								
