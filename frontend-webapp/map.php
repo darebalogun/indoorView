@@ -64,8 +64,8 @@
 						<span class="image right"><img src="images/IV.JPG" alt="" /></span><h1><?php echo $map_name ?></h1>
 					</header>
 						<div class="align-left">
-							<h2>Explore and find your way around Carleton Univeristy.</h2>
-							<h5>Click on different areas of the map to view a panoramic dispaly of the indoor space.</h5>	
+							<h2>Explore and find your way around Carleton University.</h2>
+							<h5>Click on different reference areas on the map to view a panoramic dispaly of the indoor space.</h5>	
 							<button id="myBtn" class="bigbutton" width="60" height="100">Controls Functionality</button>				
 						</div>
 				</div>
