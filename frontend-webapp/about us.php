@@ -80,7 +80,7 @@
 										<img src="images/zoya.png" alt="" />
 									</div>
 									<h4>Zoya Mushtaq </h4>
-									<h6>Zoya Mushtaq is a Computer Systems Engineering student and worked on the design and development of the Graphical User Interface (Web Applicaiton). </h6>	
+									<h6>Zoya Mushtaq is a Computer Systems Engineering student and worked on the design and development of the Graphical User Interface (Web Application). </h6>	
 								</div>
 								<div class="col align-center">
 									<div class="image round">
@@ -103,12 +103,12 @@
 										<img src="images/placeholder.jpg" alt="" />
 									</div>
 									<h4>Anannya Bhatia </h4>
-									<h6>Anannya Bhatia is a Computer Systems Engineering student and worked on the image filtering algorithm. </h6>						
+									<h6>Anannya Bhatia is a Computer Systems Engineering student and worked on the image filtering script. </h6>						
 								</div>
 
 								<div class="col align-center">
 									<div class="image round">
-										<img src="images/placeholder.jpg" alt="" />
+										<img src="images/atia.jpg" alt="" />
 									</div>
 									<h4>Dr. Mohamed Atia </h4>
 									<h6>Dr. Mohamed Atia is the project supervisor and a professor at Carleton University. He oversaw the progress and development of the project and advised on project decisions.  </h6>						
