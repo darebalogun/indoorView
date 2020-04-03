@@ -50,52 +50,44 @@ def receive(image_count, map_name):
 
         try:
 
-            sock.sendall("GET\r\n")
+            sock.sendall("Receive\r\n")
             data = recvall(sock, 4096)
 
             if data:
                 txt = data.strip()
-                print '--%s--' % txt
 
                 if txt == 'OK':
 
-                    sock.sendall("GET_SIZE\r\n")
+                    sock.sendall("Size\r\n")
                     data = recvall(sock, 4096)
 
                     if data:
                         txt = data.strip()
-                        print '--%s--' % txt
 
-                        if txt.startswith('SIZE'):
+                        if txt.startswith('Size'):
                             
                             tmp = txt.split()
                             size = int(tmp[1])
 
-                            print '--%s--' % size
-
-                            sock.sendall("GET_IMG\r\n")
+                            sock.sendall("image_data\r\n")
 
                             myfile = open(fname, 'wb')
-                            #print size
-
                             amount_received = 0
                             while amount_received < size:
                                 data = recvall(sock, 4096)
                                 if not data:
                                     break
-                                #print 'here2'
                                 amount_received += len(data)
 
                                 #print "Amount of Data received: %s" %amount_received
-
                                 txt = data.strip('\r\n')
 
-                                if 'EOIMG' in str(txt):
+                                if 'end_of_image' in str(txt):
                                     print 'Image received successfully'
                                     cc = cc+1
                                     myfile.write(data)
                                     myfile.close()
-                                    sock.sendall("DONE\r\n")
+                                    sock.sendall("Finished\r\n")
                                     time.sleep(3)
                                     break
                                     sock.close

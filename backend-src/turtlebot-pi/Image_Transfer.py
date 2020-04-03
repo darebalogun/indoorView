@@ -1,15 +1,11 @@
 # !/usr/bin/env python2
-
-import server
+import Image_Server
 import random
 import socket, select
 from time import gmtime, strftime
 import os
 
-
-
-
-def imageTransfer():
+def transfer_images():
 
     folder_name= "IndoorView_Images"
     save_location = "/home/pi/Desktop/"+ folder_name
@@ -24,22 +20,10 @@ def imageTransfer():
                     
     print "Total image count detected: " + str(total_image_count)
     count = 1
-
     while (count <= total_image_count):
         pic = save_location + "/" + 'image_' + str(count) + '.jpg'
         picID = 'image_' + str(count)
         print '%s is being processed' % picID
-
-        server.serv(pic)
+        Image_Server.transfer(pic)
         count = count +1
 
-
-
-"""
-count = count +1
-pic = 'image' + str(count) + '.jpg'
-picID = 'image' + str(count)
-print '%s is being processed' % picID
-
-server.serv(pic)
-"""
