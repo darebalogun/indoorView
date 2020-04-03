@@ -56,7 +56,7 @@ def receive(image_count, map_name):
             if data:
                 txt = data.strip()
 
-                if txt == 'OK':
+                if txt == 'Ok':
 
                     sock.sendall("Size\r\n")
                     data = recvall(sock, 4096)
