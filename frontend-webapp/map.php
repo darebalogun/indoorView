@@ -1,3 +1,11 @@
+<!--* @Author: Zoya Mushtaq 
+      @Author: Dare Balogun 
+ *    @Date:   2020-03-01
+ *    @Last Modified by: Zoya Mushtaq -->
+
+ <!--Map Page used to dispaly the image maps and panormic image dispaly-->
+
+
 <?php
   require_once('includes/database.inc.php');
   $pdo = getConnectionInfo();
@@ -11,6 +19,7 @@
 <!DOCTYPE HTML>
 
 <html>
+
 	<meta name="pinterest" content="nopin" />
 	<head>
 		<title>Indoor View</title>
@@ -157,6 +166,7 @@
 
 			<!-- modal end -->
 
+			<!-- image map reference area overlay -->
 
 			<div class="row">
 				<div class="column map" id="image_map">
@@ -177,6 +187,9 @@
 						?>
 
 				</div>
+
+				<!-- control bar display -->
+
                 <div id="panorama" class="column vrview"></div>
                             <div id="panorama">
 								<div id="controls">
@@ -192,7 +205,8 @@
                         
 					<script>
 						var remember = 0;
-                        // Create viewer
+
+                    // Create viewer
 								viewer = pannellum.viewer('panorama', {
 									"type": "equirectangular",
 									"panorama": "images/" + "<?php echo $map_name ?>" + "/image1.jpg",
@@ -212,6 +226,8 @@
 							images.push("images/" + "<?php echo $map_name ?>" + "/image" + j.toString() + ".jpg" );
 						}
 
+						//panoramic image display in reference to hotspot
+
 						function onVrViewLoad(index) {
 							viewer = pannellum.viewer('panorama', {
 													"type": "equirectangular",				
@@ -223,6 +239,8 @@
 							remember = index;
 
 							}
+						
+						//delete previous display
 
 						function newVrView(index){
 							var vrview = document.getElementById("panorama");
@@ -234,7 +252,6 @@
 	
                         // Make buttons work
 							document.getElementById('pan-up').addEventListener('click', function(e) {
-								// viewer.setPitch(viewer.getPitch() + 10);
 								if(remember == (image_count -1)){
 									onVrViewLoad(0);
 								}else{
@@ -242,7 +259,6 @@
 								} 
 							});
 							document.getElementById('pan-down').addEventListener('click', function(e) {
-								//viewer.setPitch(viewer.getPitch() - 10);
 								if(remember == (0)){
 									onVrViewLoad(image_count - 1); 
 								}else{
@@ -271,7 +287,6 @@
 				$.fn.maphilight.defaults = {
 				fill: true,
 				fillColor: 'ff0000',
-				// fillColor:'006400',
 				fillOpacity: 0.1,
 				stroke: true,
 				strokeColor: 'ff0000',

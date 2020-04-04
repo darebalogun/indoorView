@@ -1,3 +1,8 @@
+<!--* @Author: Zoya Mushtaq 
+ *    @Date:   2020-03-01
+ *    @Last Modified by: Zoya Mushtaq -->
+
+ <!--Applications Page used as the starting hub of the web application-->
 <?php
   require_once('includes/database.inc.php');
   $pdo = getConnectionInfo();
@@ -71,7 +76,6 @@
 								</div>
 								<div class="col col1 first">
 									<div >
-										<!--<span class="image fit"><img src="images/cuCampusMap.JPG" alt="" /></span>-->
 										<a href="https://carleton.ca/campus/map/" class="image main"><img src="images/cuCampusMap.JPG" alt="" /></a>
 									</div>
 								</div>
@@ -90,7 +94,6 @@
 										
 									</div>
 								</div>
-
 
 
 								<div class="flex flex-2">

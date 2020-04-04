@@ -1,3 +1,9 @@
+<!--* @Author: Zoya Mushtaq 
+ *    @Date:   2020-03-01
+ *    @Last Modified by: Zoya Mushtaq -->
+
+ <!--About Us Page used to dispaly the team members roles -->
+
 <?php
   require_once('includes/database.inc.php');
   $pdo = getConnectionInfo();

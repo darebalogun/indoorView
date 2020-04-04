@@ -1,3 +1,8 @@
+<!--* @Author: Zoya Mushtaq 
+ *    @Date:   2020-03-01
+ *    @Last Modified by: Zoya Mushtaq -->
+
+ <!--Home Page used as the starting hub of the web application-->
 <?php
   require_once('includes/database.inc.php');
   $pdo = getConnectionInfo();

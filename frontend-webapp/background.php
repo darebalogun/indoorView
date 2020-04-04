@@ -1,3 +1,8 @@
+<!--* @Author: Zoya Mushtaq 
+ *    @Date:   2020-03-01
+ *    @Last Modified by: Zoya Mushtaq -->
+
+ <!--Background Page used to dispaly the motivation of the project -->
 <?php
   require_once('includes/database.inc.php');
   $pdo = getConnectionInfo();
