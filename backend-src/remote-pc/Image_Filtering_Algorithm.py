@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        module4
+# Name:        Image_Filtering_Algorithm
 # Purpose:
 #
 # Author:      anannya
