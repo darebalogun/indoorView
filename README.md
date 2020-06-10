@@ -87,18 +87,3 @@ Please enter a name for the map: [map_name]
 
 18. Point co-ordinates and location of images should now be saved to the database
 
-### TO-DO
-1. ~Add config file with:~ 
-    1. ~Map size~
-    2. ~Map resolution~
-    3. ~Photo spacing~
-2. ~Quarternion calculations~
-3. ~Start point from current location of robot~
-4. Remove file structure naming pertinent to my pc
-5. More user friendly CLI
-6. Update Readme with config file steps
-7. ~Update menu in html pages~
-8. ~Fix auto-increment ID bug in database~
-9. ~Reduce max velocity for stability~
-10. Fix map coordinates size and positions
-11. Clean up folder structure on PI
