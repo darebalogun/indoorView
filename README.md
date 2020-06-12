@@ -1,3 +1,4 @@
+![](demo.gif)
 # indoorView
 ## [cu-indoorview.herokuapp.com](https://cu-indoorview.herokuapp.com/)
 IndoorView is a Google StreetView Experience for indoor spaces. The systems includes using a robotic platform used to map a space and capture 360 degree images and a user facing web application to host the interactive map. This project is the 4th year engineering and design capstone project in the Systems and Computer Engineering department at Carleton University
