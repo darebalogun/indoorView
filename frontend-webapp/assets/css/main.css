@@ -122,22 +122,21 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.bigbutton{
+.bigbutton {
   background-color: #191b77;
   font: inherit;
   font-weight: 700;
   line-height: 1;
-  color: #FFFFFF;
+  color: #ffffff;
   float: left;
   padding: 15px;
   border-radius: 10px;
   -moz-border-radius: 10px;
-  -webkit-border-radius: 10px; 
-
+  -webkit-border-radius: 10px;
 }
 
 /* Modal Content */
@@ -150,7 +149,6 @@
   background-clip: padding-box;
   width: 50%;
   /* height: 100%; */
-  
 }
 
 .modal-content:target {
@@ -161,7 +159,6 @@
 
 /* The Close Button */
 .modclose {
-  
   color: #050505;
   float: right;
   font-size: 28px;
@@ -184,16 +181,14 @@ table {
   width: 100%;
 }
 
-td{
+td {
   border: 1px solid #0e0d0d;
   text-align: left;
   padding: 8px;
   width: 10%;
   color: rgb(134, 131, 131);
-
-
 }
-th{
+th {
   border: 1px solid #070606;
   text-align: left;
   padding: 8px;
@@ -207,7 +202,6 @@ tr:nth-child(even) {
 
 /* table css end  */
 
-
 /* beginning of panormam css */
 #panorama {
   width: 62%;
@@ -216,21 +210,19 @@ tr:nth-child(even) {
   /* height: 70%; */
   /* height: default;  */
   image-orientation: right;
-
 }
 
 #controls {
   position: fixed;
   /* toggle on deciding between absolute and relative */
   bottom: 0;
-  right:2;
+  right: 2;
   z-index: 2;
   text-align: center;
   width: 100%;
   padding-bottom: 10px;
   z-index: 0;
-
-      }
+}
 .ctrl {
   padding: 8px 5px;
   width: 40px;
@@ -238,25 +230,24 @@ tr:nth-child(even) {
   text-align: center;
   background: rgba(200, 200, 200, 0.8);
   display: inline-block;
-  border: 3px solid #2D2868;
+  border: 3px solid #2d2868;
   cursor: pointer;
 }
 .ctrl:hover {
   background: rgba(200, 200, 200, 1);
 }
 
-
 /* end of panormam css */
 
 /* Beginning of Dares css  */
 body {
   margin: 0;
+  color: #000;
 }
 
 iframe {
   border: 0;
 }
-
 
 .row {
   float: left;
@@ -274,7 +265,8 @@ iframe {
   overflow: auto;
   position: relative;
   display: inline-block;
-  box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+    0px 0px 0px 8px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
   /*width: 33.15%;*/
   width: 33.15%;
@@ -287,7 +279,6 @@ iframe {
   object-fit: fill;
   height: 100%;
   margin-right: 10px;
-
 }
 
 .column.vrview {
@@ -295,11 +286,10 @@ iframe {
   image-orientation: right;
   padding: 1px;
   width: 60%;
-  box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px  rgb(162, 184, 212);
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+    0px 0px 0px 8px rgb(162, 184, 212);
   margin-left: 10px;
   margin-right: 5px;
-
-  
 }
 
 /* MOBILE */
@@ -314,42 +304,40 @@ iframe {
     overflow: auto;
     position: relative;
     display: inline-block;
-    box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+      0px 0px 0px 8px rgba(0, 0, 0, 0.1);
     /*width: 33.15%;*/
     width: 100%;
     margin-right: 10px;
     /* margin-left: 5px; */
-
   }
 
   .column.vrview {
     display: inline-block;
     padding: 1px;
     width: 100%;
-    box-shadow: 0px 0px 0px 7px  rgb(162, 184, 212), 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+      0px 0px 0px 8px rgba(0, 0, 0, 0.1);
     margin-left: 10px;
     margin-right: 5px;
   }
   #panorama {
-      width: 100%;
-     /* width: 62%;  */
+    width: 100%;
+    /* width: 62%;  */
     /* height: 450px; */
     height: 700px;
     /* height: 70%; */
     /* height: default;  */
     image-orientation: right;
-  
   }
-
-
 }
 /* DESKTOP */
 @media screen and (min-width: 600px) {
   iframe {
-     /* height: 600px;  */
+    /* height: 600px;  */
     height: 100%;
     width: 100%;
-     margin: 1rem auto; 
+    margin: 1rem auto;
     display: block;
   }
 }
@@ -358,18 +346,20 @@ iframe {
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
-  padding-top: 30px; height: 0; overflow: hidden;
-  }
-   
-  .video-container iframe,
-  .video-container object,
-  .video-container embed {
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  }
+}
 
 /* added this for the x in the menu */
 
@@ -465,7 +455,7 @@ ul {
 
 body {
   background-color: #fff;
-  color: #999999;
+  color: #000000;
 }
 
 body,
@@ -541,29 +531,25 @@ h3 a,
 h4 a,
 h5 a,
 h6 a,
-h7 a{
+h7 a {
   color: inherit;
   text-decoration: none;
-
 }
 
 h1 {
   font-size: 3em;
   margin-bottom: 0.25em;
-
 }
 
 @media screen and (max-width: 600px) {
   h1 {
     font-size: 2.5em;
-
   }
 }
 
 h2 {
   font-size: 1.7em;
   color: #060707;
-
 }
 h7 {
   font-size: 1.7em;
@@ -573,7 +559,6 @@ h7 {
 @media screen and (max-width: 600px) {
   h2 {
     font-size: 1em;
-
   }
 }
 
@@ -586,7 +571,6 @@ h7 {
 @media screen and (max-width: 480px) {
   h2 {
     font-size: 1em;
-
   }
 }
 
@@ -621,13 +605,11 @@ h4 {
 
 h5 {
   font-size: 1.5em;
-
 }
 
 @media screen and (max-width: 600px) {
   h5 {
     font-size: 1em;
-
   }
 }
 
@@ -692,12 +674,10 @@ b {
 
 h1 {
   color: rgb(23, 16, 49);
-
 }
 
 h2 {
   color: rgb(10, 0, 0);
-
 }
 
 h3 {
@@ -710,7 +690,6 @@ h4 {
 
 h5 {
   color: rgb(10, 0, 0);
-
 }
 
 h6 {
@@ -718,7 +697,6 @@ h6 {
 }
 h2 {
   color: rgb(12, 9, 9);
-
 }
 
 blockquote {
@@ -1008,44 +986,34 @@ button.special:active,
   width: 77%;
 }
 
-
-
-
-
 /* Image */
 
 .image.right {
   max-width: 40%;
   z-index: -1;
   position: relative;
-
-
- 
 }
 
 .image.right img {
   position: relative;
   width: 100%;
-  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+    0px 0px 0px 8px rgba(30, 15, 116, 0.1);
   z-index: -1;
-
 }
 
 .image.left {
   max-width: 30%;
   z-index: -1;
   position: relative;
-
-
- 
 }
 
 .image.left img {
   position: relative;
   width: 80%;
-  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+    0px 0px 0px 8px rgba(30, 15, 116, 0.1);
   z-index: -1;
-
 }
 
 .image.round {
@@ -1054,11 +1022,12 @@ button.special:active,
 
 .image.round img {
   border-radius: 70%;
-   width: 300px;
-   box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+  width: 300px;
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+    0px 0px 0px 8px rgba(30, 15, 116, 0.1);
 
   /* height: 500px;  */
-} 
+}
 
 .image.main {
   display: inline-block;
@@ -1069,7 +1038,8 @@ button.special:active,
 
 .image.main img {
   width: 100%;
-  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212), 0px 0px 0px 8px rgba(30, 15, 116, 0.1);
+  box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
+    0px 0px 0px 8px rgba(30, 15, 116, 0.1);
 }
 
 .image.right {
@@ -1145,7 +1115,6 @@ ul li {
   padding: 1.5em 0 1.5em 0;
   position: relative;
   z-index: 0;
-
 }
 
 .wrapper .inner {
@@ -1154,14 +1123,12 @@ ul li {
   width: 80%;
   position: relative;
   z-index: 0;
-
 }
 
 @media screen and (max-width: 736px) {
   .wrapper header {
     margin-bottom: 2em;
     z-index: 0;
-
   }
 }
 
@@ -1263,10 +1230,12 @@ body.subpage {
   padding: 0;
   position: absolute;
   top: 0;
+  font-size: large;
+  font-weight: bold;
 }
 
 #header > .logo a {
-  font-size: 1.25em;
+  font-size: 2em;
   color: #3498db;
 }
 
@@ -1352,7 +1321,6 @@ body.subpage {
 
 #header.alt h1 {
   left: 2.5em;
-
 }
 
 #header.alt nav {
@@ -1371,12 +1339,10 @@ body.subpage {
 
   #header > h1 {
     left: 1em;
-
   }
 
   #header > h1 a {
     font-size: 1em;
-
   }
 }
 
@@ -1531,7 +1497,7 @@ body.subpage {
   -webkit-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
-  background-image: url("../../images/back.png");
+  background-image: url("../../images/back-blur-dark.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1561,7 +1527,6 @@ body.subpage {
   font-size: 4em;
   margin-bottom: 0.25em;
   color: #fff;
-
 }
 
 #banner p {
@@ -1654,7 +1619,6 @@ body.subpage {
     font-size: 1.75em;
     margin-bottom: 0.5em;
     padding-bottom: 0;
-
   }
 
   #banner p {
