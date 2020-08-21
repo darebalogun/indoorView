@@ -82,89 +82,6 @@ $maps = getAllMaps($pdo);
 					<button id="myBtn" class="bigbutton" width="60" height="100">Controls</button>
 				</div>
 			</div>
-<<<<<<< 5f6018e2b93899c5d70ee85762f1a6b4f5a2fa66
-	</div>
-	</section>
-
-
-
-	<!-- modal begin  -->
-
-	<!-- Trigger/Open The Modal -->
-
-
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
-
-		<!-- Modal content -->
-		<div class="modal-content">
-			<span class="modclose">&times;</span>
-			<h2>Controls Functionality</h2>
-
-			<table>
-				<tr>
-					<td>Symbol</td>
-					<th>Functionality</th>
-
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&#x25B2; </div>
-					</td>
-					<th>
-						<h5>Navigate forward to the next image in the map</h5>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&#9660;</div>
-					</td>
-					<th>
-						<h5> Navigate backward to the previous image in the map</h5>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&#x25C0;</div>
-					</td>
-					<th>
-						<h5> Navigate left in the image</h5>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&#9654;</div>
-					</td>
-					<th>
-						<h5>Navigate right in the image</h5>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&plus;</div>
-					</td>
-					<th>
-						<h5> Zoom in </h5>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&minus;</div>
-					</td>
-					<th>
-						<h5> Zoom out </h5>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<div class="ctrl">&#x2922;</div>
-					</td>
-					<th>
-						<h5> Enter full screen mode</h5>
-					</th>
-				</tr>
-			</table>
-=======
 		</section>
 
 
@@ -247,7 +164,6 @@ $maps = getAllMaps($pdo);
 				</table>
 
 			</div>
->>>>>>> Style changes and make map circles bigger
 
 		</div>
 
