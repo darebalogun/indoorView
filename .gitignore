@@ -3,3 +3,4 @@ go_to_specific_point_on_map.pyc
 splitpoints.pyc
 StartRVIZ.pyc
 *.pyc
+frontend-webapp/includes/database.inc.php
