@@ -210,7 +210,7 @@ $maps = getAllMaps($pdo);
 									href='javascript:newVrView(" . $index . ");'
 									target='_self'
 									shape='circle'
-									coords='" . $coord[0] . "," . $coord[1] . ",6'	 
+									coords='" . $coord[0] . "," . $coord[1] . ",7'	 
 								/>");
 				}
 				?>
