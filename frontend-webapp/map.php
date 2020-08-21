@@ -41,7 +41,8 @@ $maps = getAllMaps($pdo);
 <body class="subpage">
 	<style>
 		body {
-			background-image: url(images/bluewhite.jpg)
+			background-image: url(images/back-blur-dark.png);
+			background-size: cover;
 		}
 	</style>
 	<header id="header">
