@@ -206,7 +206,7 @@ tr:nth-child(even) {
 #panorama {
   width: 62%;
   /* height: 450px; */
-  height: 700px;
+  height: 600px;
   /* height: 70%; */
   /* height: default;  */
   image-orientation: right;
@@ -268,7 +268,7 @@ iframe {
   box-shadow: 0px 0px 0px 7px rgb(162, 184, 212),
     0px 0px 0px 8px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
-  width: 50%;
+  width: 33%;
 }
 
 .column.map img {
@@ -292,7 +292,7 @@ iframe {
 }
 
 /* MOBILE */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .column {
     margin: 0;
     height: 100%;
