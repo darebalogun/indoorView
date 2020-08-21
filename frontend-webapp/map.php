@@ -76,12 +76,13 @@ $maps = getAllMaps($pdo);
 					<span class="image right"><img src="images/IV.JPG" alt="" /></span>
 					<h1><?php echo $map_name ?></h1>
 				</header>
-				<div class="align-left">
+				<div class="align-center">
 					<h2>Explore and find your way around Carleton University.</h2>
-					<h5>Click on different reference areas on the map to view a panoramic dispaly of the indoor space.</h5>
-					<button id="myBtn" class="bigbutton" width="60" height="100">Controls Functionality</button>
+					<h5>Click on a red cirlce on the map to view a panoramic dispaly of the space.</h5>
+					<button id="myBtn" class="bigbutton" width="60" height="100">Controls</button>
 				</div>
 			</div>
+<<<<<<< 5f6018e2b93899c5d70ee85762f1a6b4f5a2fa66
 	</div>
 	</section>
 
@@ -163,6 +164,90 @@ $maps = getAllMaps($pdo);
 					</th>
 				</tr>
 			</table>
+=======
+		</section>
+
+
+
+		<!-- modal begin  -->
+
+		<!-- Trigger/Open The Modal -->
+
+
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="modclose">&times;</span>
+				<h2>Controls</h2>
+
+				<table>
+					<tr>
+						<td>Symbol</td>
+						<th>Functionality</th>
+
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&#x25B2; </div>
+						</td>
+						<th>
+							<h5>Navigate forward to the next image in the map</h5>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&#9660;</div>
+						</td>
+						<th>
+							<h5> Navigate backward to the previous image in the map</h5>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&#x25C0;</div>
+						</td>
+						<th>
+							<h5> Navigate left in the image</h5>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&#9654;</div>
+						</td>
+						<th>
+							<h5>Navigate right in the image</h5>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&plus;</div>
+						</td>
+						<th>
+							<h5> Zoom in </h5>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&minus;</div>
+						</td>
+						<th>
+							<h5> Zoom out </h5>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<div class="ctrl">&#x2922;</div>
+						</td>
+						<th>
+							<h5> Enter full screen mode</h5>
+						</th>
+					</tr>
+				</table>
+
+			</div>
+>>>>>>> Style changes and make map circles bigger
 
 		</div>
 
@@ -209,7 +294,7 @@ $maps = getAllMaps($pdo);
 									href='javascript:newVrView(" . $index . ");'
 									target='_self'
 									shape='circle'
-									coords='" . $coord[0] . "," . $coord[1] . ",3'	 
+									coords='" . $coord[0] . "," . $coord[1] . ",6'	 
 								/>");
 				}
 				?>
